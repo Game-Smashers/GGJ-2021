@@ -1,16 +1,18 @@
 extends Node2D
 
+var held_object = null
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for node in get_tree().get_nodes_in_group("grabbable"):
+		node.connect("clicked", self, "_on_grabbable_clicked")
 
+func _on_grabbable_clicked(object):
+	if !held_object:
+		held_object = object
+		held_object.pickup()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		if held_object and !event.pressed:
+			held_object.drop() # velocity: Input.get_last_mouse_speed()
+			held_object = null

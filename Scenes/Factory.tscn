@@ -1,10 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Factory.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/floor-texture.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 232.181, 9.08595 )
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Ground" type="RigidBody2D" parent="."]
+position = Vector2( 230, 200 )
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Ground"]
+scale = Vector2( 14.5151, 0.565224 )
+texture = ExtResource( 3 )
+
 [node name="Human" parent="." instance=ExtResource( 1 )]
-position = Vector2( 51.7213, 39.6349 )
+position = Vector2( 61.3218, 58.3235 )
+
+[node name="Human" parent="Human" instance=ExtResource( 1 )]
+position = Vector2( 152.172, -16.6855 )
