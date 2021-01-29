@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Factory.gd" type="Script" id=2]
+
+[node name="Root" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Human" parent="." instance=ExtResource( 1 )]
+position = Vector2( 51.7213, 39.6349 )
