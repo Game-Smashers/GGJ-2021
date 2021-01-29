@@ -24,5 +24,5 @@ texture = ExtResource( 3 )
 [node name="Human" parent="." instance=ExtResource( 1 )]
 position = Vector2( 61.3218, 58.3235 )
 
-[node name="Human" parent="Human" instance=ExtResource( 1 )]
-position = Vector2( 152.172, -16.6855 )
+[node name="Human2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 213.494, 41.638 )
