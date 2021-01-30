@@ -1,3 +1,5 @@
+class_name Room
+
 tool
 extends Area2D
 
@@ -18,6 +20,8 @@ func _process(delta):
 	var darkness = 1.0
 	if hovered:
 		darkness = 0.8
+	if selected:
+		darkness *= 0.8
 	material.set_shader_param("darkness", darkness)
 
 
@@ -25,7 +29,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if not event.pressed:
 			selected = hovered
-			print("Selected: ", selected)
 
 
 func set_texture(new_texture: Texture) -> void:
@@ -41,7 +44,6 @@ func set_collision_size(new_collision_size: Vector2):
 
 func _on_Room_mouse_entered() -> void:
 	hovered = true
-	#texture.
 
 
 func _on_Room_mouse_exited() -> void:

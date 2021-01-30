@@ -1,3 +1,5 @@
+class_name MainMenu
+
 extends Control
 
 func _on_QuitButton_pressed() -> void:

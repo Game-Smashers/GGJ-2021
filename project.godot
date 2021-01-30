@@ -8,9 +8,50 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Factory",
+"language": "GDScript",
+"path": "res://Scenes/Factory.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Human",
+"language": "GDScript",
+"path": "res://Prefabs/Human.gd"
+}, {
+"base": "Resource",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Scripts/Level.gd"
+}, {
+"base": "Control",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://Scenes/MainMenu.gd"
+}, {
+"base": "Node2D",
+"class": "PowerStation",
+"language": "GDScript",
+"path": "res://Scenes/PowerStation.gd"
+}, {
+"base": "Node",
+"class": "PowerSystem",
+"language": "GDScript",
+"path": "res://Scripts/PowerSystem.gd"
+}, {
+"base": "Area2D",
+"class": "Room",
+"language": "GDScript",
+"path": "res://Scenes/Room.gd"
+} ]
 _global_script_class_icons={
-
+"Factory": "",
+"Human": "",
+"Level": "",
+"MainMenu": "",
+"PowerStation": "",
+"PowerSystem": "",
+"Room": ""
 }
 
 [application]
