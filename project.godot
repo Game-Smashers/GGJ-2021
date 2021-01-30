@@ -44,15 +44,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UIElements/PowerBar.gd"
 }, {
-"base": "Node2D",
-"class": "PowerStation",
-"language": "GDScript",
-"path": "res://Scenes/PowerStation.gd"
-}, {
 "base": "Area2D",
 "class": "Room",
 "language": "GDScript",
-"path": "res://Scenes/Room.gd"
+"path": "res://Scenes/Rooms/Room.gd"
 }, {
 "base": "Reference",
 "class": "Types",
@@ -67,7 +62,6 @@ _global_script_class_icons={
 "Level": "",
 "MainMenu": "",
 "PowerBar": "",
-"PowerStation": "",
 "Room": "",
 "Types": ""
 }

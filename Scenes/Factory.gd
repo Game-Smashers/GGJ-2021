@@ -9,7 +9,6 @@ onready var hud: HUD = $CanvasLayer/HUD
 
 # Rooms
 onready var pump_room = $Rooms/WaterPumpRoom
-onready var control_room = $Rooms/ControlRoom
 onready var cafeteria = $Rooms/Cafeteria
 onready var waste_room = $Rooms/WasteRoom
 onready var reactor_room = $Rooms/ReactorRoom
@@ -34,7 +33,7 @@ func _ready():
 	hud.end_screen.back_to_menu_button.connect("pressed", self, "_on_back_to_menu_button_pressed")
 
 	# Must match ordering of Types.RoomType
-	rooms = [pump_room, turbine_room, reactor_room, waste_room, cafeteria, control_room]
+	rooms = [pump_room, turbine_room, reactor_room, waste_room, cafeteria]
 
 	for room in rooms:
 		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])

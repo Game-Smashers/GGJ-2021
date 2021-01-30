@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UIElements/HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/ControlRoom.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/WasteRoom.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/WaterPumpRoom.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Cafeteria.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/ReactorRoom.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/TurbineRoom.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Rooms/WasteRoom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Rooms/WaterPumpRoom.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Rooms/Cafeteria.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Rooms/ReactorRoom.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Rooms/TurbineRoom.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Factory.gd" type="Script" id=10]
 [ext_resource path="res://Audio/SFX/FactoryBackground.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scripts/Geiger.gd" type="Script" id=12]
@@ -29,9 +28,6 @@ margin_bottom = 1080.0
 [node name="WaterPumpRoom" parent="Rooms" instance=ExtResource( 5 )]
 position = Vector2( 960.36, 896.381 )
 scale = Vector2( 0.893, 1 )
-
-[node name="ControlRoom" parent="Rooms" instance=ExtResource( 3 )]
-position = Vector2( 1000.22, 554.98 )
 
 [node name="Cafeteria" parent="Rooms" instance=ExtResource( 6 )]
 position = Vector2( 338.968, 557.06 )
