@@ -18,23 +18,52 @@ onready var turbine_room = $Rooms/TurbineRoom
 onready var power_system = $PowerSystem
 onready var timer: Timer = $Timer
 
-var game_running := true
-
 var levels = []
 var current_level_index := 0
 
 var rooms = []
-
 var hovered_room_index := -1
 
 func _ready():
 	for node in get_tree().get_nodes_in_group("grabbable"):
 		node.connect("clicked", self, "_on_grabbable_clicked")
+	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
+	hud.end_screen.next_level_button.connect("pressed", self, "_on_next_level_button_pressed")
+	hud.end_screen.back_to_menu_button.connect("pressed", self, "_on_back_to_menu_button_pressed")
 
 	# Must match ordering of Types.RoomType
 	rooms = [pump_room, turbine_room, reactor_room, waste_room, cafeteria, control_room]
 
-	# Get all levels
+	for room in rooms:
+		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
+		room.connect("mouse_exited", self, "on_room_mouse_exit")
+
+	load_levels()
+	start_level(current_level_index)
+
+
+func start_level(level_index: int):
+	var level: Level = levels[level_index]
+
+	hud.level = level_index
+	hud.end_screen.hide()
+	timer.start(level.time_limit)
+
+
+func _process(delta):
+	hud.power = (power_system.current_power / power_system.target_power) * 100.0
+	hud.minutes = int(timer.time_left / 60)
+	hud.seconds = int(timer.time_left) % 60
+
+
+func _on_grabbable_clicked(object):
+	if !held_object:
+		held_object = object
+		held_object_start = held_object.transform.origin
+		held_object.pickup()
+
+
+func load_levels():
 	var levels_dir_path = "res://Levels/"
 	var level_names = []
 	var levels_dir = Directory.new()
@@ -52,26 +81,6 @@ func _ready():
 
 	for level_name in level_names:
 		levels.append(load(level_name))
-
-	var current_level: Level = levels[current_level_index]
-
-	for room in rooms:
-		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
-		room.connect("mouse_exited", self, "on_room_mouse_exit")
-
-	timer.start(current_level.time_limit)
-
-func _process(delta):
-	hud.power = (power_system.current_power / power_system.target_power) * 100.0
-	hud.minutes = int(timer.time_left / 60)
-	hud.seconds = int(timer.time_left) % 60
-
-
-func _on_grabbable_clicked(object):
-	if !held_object:
-		held_object = object
-		held_object_start = held_object.transform.origin
-		held_object.pickup()
 
 
 func _unhandled_input(event):
@@ -119,4 +128,16 @@ func overlapping_room(body: KinematicBody2D) -> bool:
 
 
 func _on_Timer_timeout() -> void:
-	game_running = false
+	hud.end_level(true)
+
+
+func _on_replay_level_button_pressed() -> void:
+	start_level(current_level_index)
+
+
+func _on_next_level_button_pressed() -> void:
+	start_level(current_level_index + 1)
+
+
+func _on_back_to_menu_button_pressed() -> void:
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")

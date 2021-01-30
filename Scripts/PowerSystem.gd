@@ -12,9 +12,8 @@ func _ready():
 	factory = get_parent()
 
 func _process(delta):
-	if factory.game_running:
-		gather_power(delta)
-		#print("power: ", current_power)
+	gather_power(delta)
+	#print("power: ", current_power)
 
 func gather_power(delta):
 	#gather the power from each room boi

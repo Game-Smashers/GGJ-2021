@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "EndScreen",
+"language": "GDScript",
+"path": "res://UIElements/EndScreen.gd"
+}, {
 "base": "Node2D",
 "class": "Factory",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Types.gd"
 } ]
 _global_script_class_icons={
+"EndScreen": "",
 "Factory": "",
 "HUD": "",
 "Human": "",
