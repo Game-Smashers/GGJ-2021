@@ -1,16 +1,19 @@
 tool
 extends Control
+class_name HUD
 
 export(int) var level: = 1 setget set_level
+export(float) var power: = 0.5 setget set_power
 export(int) var minutes: = 1 setget set_minutes
 export(int) var seconds: = 0 setget set_seconds
 
+onready var power_bar: ProgressBar = $HBox/VBoxContainer2/PowerBar
 onready var level_label: Label = $HBox/LevelVBox/LevelNumberLabel
 onready var timer_label: Label = $HBox/TimerLabel
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func set_power(new_power: float) -> void:
+	power_bar.value = new_power
+	power = new_power
 
 
 func set_level(new_level: int) -> void:
