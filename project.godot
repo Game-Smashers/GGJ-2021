@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/MainMenu.gd"
 }, {
+"base": "Control",
+"class": "PowerBar",
+"language": "GDScript",
+"path": "res://UIElements/PowerBar.gd"
+}, {
 "base": "Node2D",
 "class": "PowerStation",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_class_icons={
 "Human": "",
 "Level": "",
 "MainMenu": "",
+"PowerBar": "",
 "PowerStation": "",
 "PowerSystem": "",
 "Room": "",

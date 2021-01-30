@@ -2,8 +2,8 @@
 
 [ext_resource path="res://UIElements/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Prefabs/ProgressBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/Badaboom.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://UIElements/PowerBar.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -41,23 +41,17 @@ __meta__ = {
 }
 
 [node name="LevelVBox" type="VBoxContainer" parent="HBox"]
-anchor_top = 0.00806452
-anchor_bottom = 0.00806452
 margin_right = 117.0
 margin_bottom = 124.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="HBox/LevelVBox"]
-anchor_top = 0.00806452
-anchor_bottom = 0.00806452
 margin_right = 117.0
 margin_bottom = 60.0
 custom_fonts/font = SubResource( 1 )
 text = "Level"
 
 [node name="LevelNumberLabel" type="Label" parent="HBox/LevelVBox"]
-anchor_top = 0.00806452
-anchor_bottom = 0.00806452
 margin_top = 64.0
 margin_right = 117.0
 margin_bottom = 124.0
@@ -82,28 +76,24 @@ size_flags_horizontal = 3
 
 [node name="Control" type="Control" parent="HBox/VBoxContainer2"]
 margin_right = 1499.0
-margin_bottom = 28.0
+margin_bottom = 29.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="PowerBar" parent="HBox/VBoxContainer2" instance=ExtResource( 3 )]
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="PowerBar" parent="HBox/VBoxContainer2" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 32.0
+margin_top = 33.0
 margin_right = 1499.0
-margin_bottom = 92.0
+margin_bottom = 91.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
 
 [node name="Control2" type="Control" parent="HBox/VBoxContainer2"]
-margin_top = 96.0
+margin_top = 95.0
 margin_right = 1499.0
 margin_bottom = 124.0
 mouse_filter = 2

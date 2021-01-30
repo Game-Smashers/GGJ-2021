@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UIElements/PowerBar.gd" type="Script" id=1]
+
+[node name="PowerBar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.00012207
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="VBox"]
+margin_right = 1920.0
+margin_bottom = 201.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+margin_top = 205.0
+margin_right = 1920.0
+margin_bottom = 875.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CriticalZoneLow" type="ColorRect" parent="VBox/HBox"]
+margin_right = 192.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+color = Color( 1, 0.0117647, 0.0117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DangerZoneLow" type="ColorRect" parent="VBox/HBox"]
+margin_left = 192.0
+margin_right = 576.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+color = Color( 0.870588, 0.615686, 0.129412, 1 )
+
+[node name="SafeZone" type="ColorRect" parent="VBox/HBox"]
+margin_left = 576.0
+margin_right = 1344.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+color = Color( 0.215686, 1, 0.105882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DangerZoneHigh" type="ColorRect" parent="VBox/HBox"]
+margin_left = 1344.0
+margin_right = 1728.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+color = Color( 0.870588, 0.615686, 0.129412, 1 )
+
+[node name="CriticalZoneHigh" type="ColorRect" parent="VBox/HBox"]
+margin_left = 1728.0
+margin_right = 1920.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+color = Color( 1, 0.0117647, 0.0117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="VBox"]
+margin_top = 879.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="ValueRect" type="ColorRect" parent="."]
+anchor_left = 0.49
+anchor_right = 0.51
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0.462745, 1, 1 )

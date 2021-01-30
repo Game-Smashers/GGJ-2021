@@ -3,11 +3,11 @@ extends Control
 class_name HUD
 
 export(int) var level: = 1 setget set_level
-export(float) var power: = 0.5 setget set_power
+export(float, 0, 1) var power: = 0.5 setget set_power
 export(int) var minutes: = 1 setget set_minutes
 export(int) var seconds: = 0 setget set_seconds
 
-onready var power_bar: ProgressBar = $HBox/VBoxContainer2/PowerBar
+onready var power_bar: PowerBar = $HBox/VBoxContainer2/PowerBar
 onready var level_label: Label = $HBox/LevelVBox/LevelNumberLabel
 onready var timer_label: Label = $HBox/TimerLabel
 
