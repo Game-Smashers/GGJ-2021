@@ -10,6 +10,7 @@ var velocity: = Vector2.ZERO
 var held := false
 var hovered := false
 var selected := false
+var in_room: Room
 
 var grab_offset: Vector2
 
@@ -24,8 +25,12 @@ func _ready():
 func _physics_process(delta):
 	if held:
 		global_transform.origin = get_global_mouse_position() + grab_offset
-		global_transform.x = Vector2(-0.9,0.1).normalized()
-		global_transform.y = Vector2(0.1,0.9).normalized()
+		if grab_offset.x > 0:
+			global_transform.x = Vector2(0.9,0.1).normalized()
+			global_transform.y = Vector2(-0.1,0.9).normalized()
+		else:
+			global_transform.x = Vector2(-0.9,0.1).normalized()
+			global_transform.y = Vector2(0.1,0.9).normalized()
 		return
 
 	global_transform.x = Vector2(1.0, 0.0)
@@ -51,7 +56,15 @@ func pickup(grab_offset):
 	held = true
 	self.grab_offset = grab_offset
 
+	if in_room != null:
+		in_room.remove_occupant()
+		in_room = null
 
-func drop():
+
+func drop(room):
 	if held:
 		held = false
+	in_room = room
+
+	if room != null:
+		room.add_occupant()

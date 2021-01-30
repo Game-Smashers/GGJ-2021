@@ -9,17 +9,13 @@ onready var hud: HUD = $CanvasLayer/HUD
 
 # Rooms
 onready var pump_room = $Rooms/WaterPumpRoom
-onready var control_room = $Rooms/ControlRoom
 onready var cafeteria = $Rooms/Cafeteria
 onready var waste_room = $Rooms/WasteRoom
 onready var reactor_room = $Rooms/ReactorRoom
 onready var turbine_room = $Rooms/TurbineRoom
 
-onready var power_system = $PowerSystem
 onready var timer: Timer = $Timer
-onready var sfx_player = $Audio
-
-var game_running := true
+onready var sound_player = $Audio
 
 var levels = []
 var current_level_index := 0
@@ -33,10 +29,44 @@ var hovered_room_index := -1
 var hovered_human: Human = null
 
 func _ready():
-	# Must match ordering of Types.RoomType
-	rooms = [pump_room, turbine_room, reactor_room, waste_room, cafeteria, control_room]
+	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
+	hud.end_screen.next_level_button.connect("pressed", self, "_on_next_level_button_pressed")
+	hud.end_screen.back_to_menu_button.connect("pressed", self, "_on_back_to_menu_button_pressed")
 
-	# Get all levels
+	# Must match ordering of Types.RoomType
+	rooms = [pump_room, turbine_room, reactor_room, waste_room, cafeteria]
+
+	for room in rooms:
+		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
+		room.connect("mouse_exited", self, "on_room_mouse_exit", [room.type])
+
+	for human in $Humans.get_children():
+		humans.append(human)
+		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
+		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
+		human.in_room = cafeteria
+
+	cafeteria.occupant_count = humans.size()
+
+	load_levels()
+	start_level(current_level_index)
+
+
+func start_level(level_index: int):
+	var level: Level = levels[level_index]
+
+	hud.level = level_index
+	hud.end_screen.hide()
+	timer.start(level.time_limit)
+
+
+func _process(delta):
+	hud.power = sin(delta * 30) + rand_range(0, 0.15)
+	hud.minutes = int(timer.time_left / 60)
+	hud.seconds = int(timer.time_left) % 60
+
+
+func load_levels():
 	var levels_dir_path = "res://Levels/"
 	var level_names = []
 	var levels_dir = Directory.new()
@@ -55,32 +85,6 @@ func _ready():
 	for level_name in level_names:
 		levels.append(load(level_name))
 
-	var current_level: Level = levels[current_level_index]
-
-	for room in rooms:
-		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
-		room.connect("mouse_exited", self, "on_room_mouse_exit", [room.type])
-
-	# Get all humans
-	for human in $Humans.get_children():
-		humans.append(human)
-		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
-		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
-
-	timer.start(current_level.time_limit)
-
-func _process(delta):
-	hud.power = (power_system.current_power / power_system.target_power) * 100.0
-	hud.minutes = int(timer.time_left / 60)
-	hud.seconds = int(timer.time_left) % 60
-
-
-func _on_grabbable_clicked(object: Node2D):
-	held_object = object
-	held_object_start = held_object.transform.origin
-	var grab_offset = object.transform.origin - get_global_mouse_position()
-	held_object.pickup(grab_offset)
-
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
@@ -89,8 +93,12 @@ func _unhandled_input(event):
 			if hovered_human != null:
 				for human in humans:
 					human.selected = human == hovered_human
-				_on_grabbable_clicked(hovered_human)
-				sfx_player.play_pickup_sound()
+				selected_human = hovered_human
+				held_object = hovered_human
+				held_object_start = hovered_human.transform.origin
+				var grab_offset = hovered_human.transform.origin - get_global_mouse_position()
+				hovered_human.pickup(grab_offset)
+				sound_player.play_pickup_sound()
 			else:
 				hovered_human = null
 
@@ -103,21 +111,25 @@ func _unhandled_input(event):
 						selected_room = room
 					else:
 						room.selected = false
-		else: # mouse released
+		else: # Mouse released
 			if held_object:
 				# Check for dropped humans in rooms
 				var human = held_object as Human
-				var dropped_over_room = overlapping_room(human)
-				held_object.drop() # velocity: Input.get_last_mouse_speed()
-				sfx_player.play_drop_sound()
-				if not dropped_over_room:
+				var room = overlapping_room(human)
+				held_object.drop(room)
+				human.in_room = room
+				if room == null:
+					# If droped outside a room return to previous pos
 					held_object.transform.origin = held_object_start
 				held_object = null
 				get_tree().set_input_as_handled()
+				sound_player.play_drop_sound()
 			else:
 				for human in humans:
 					human.selected = false
-
+				if hovered_room_index == -1:
+					for room in rooms:
+						room.selected = false
 
 
 func on_room_mouse_enter(room_type):
@@ -143,13 +155,25 @@ func on_human_mouse_exit(human):
 		hovered_human = null
 
 
-func overlapping_room(body: KinematicBody2D) -> bool:
+func overlapping_room(body: KinematicBody2D) -> Room:
 	for room in rooms:
 		room = room as Room
 		if room.overlaps_body(body):
-			return true
-	return false
+			return room
+	return null
 
 
 func _on_Timer_timeout() -> void:
-	game_running = false
+	hud.end_level(true)
+
+
+func _on_replay_level_button_pressed() -> void:
+	start_level(current_level_index)
+
+
+func _on_next_level_button_pressed() -> void:
+	start_level(current_level_index + 1)
+
+
+func _on_back_to_menu_button_pressed() -> void:
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")

@@ -5,6 +5,5 @@ enum RoomType {
 	TURBINE,
 	REACTOR,
 	WASTE,
-	CAFETERIA,
-	CONTROL
+	CAFETERIA
 }
