@@ -11,6 +11,8 @@ extents = Vector2( 232.181, 9.08595 )
 [node name="Root" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Power" parent="." instance=ExtResource( 4 )]
+
 [node name="Ground" type="RigidBody2D" parent="."]
 position = Vector2( 230, 200 )
 mode = 1
@@ -27,5 +29,3 @@ position = Vector2( 61.3218, 58.3235 )
 
 [node name="Human2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 213.494, 41.638 )
-
-[node name="Power" parent="." instance=ExtResource( 4 )]
