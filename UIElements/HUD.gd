@@ -12,10 +12,6 @@ onready var level_label: Label = $HBox/LevelVBox/LevelNumberLabel
 onready var timer_label: Label = $HBox/TimerLabel
 onready var end_screen: EndScreen = $EndScreen
 
-func end_level(success: bool) -> void:
-	end_screen.end_level(success)
-
-
 func set_power(new_power: float) -> void:
 	power_bar.value = new_power
 	power = new_power

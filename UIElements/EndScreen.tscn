@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UIElements/EndScreen.gd" type="Script" id=2]
 [ext_resource path="res://UIElements/Resources/WindowStylebox.stylebox" type="StyleBox" id=3]
+[ext_resource path="res://Sprites/waste.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -25,11 +26,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitleLabel" type="Label" parent="."]
-margin_left = 635.068
-margin_top = 69.7928
-margin_right = 923.068
-margin_bottom = 137.793
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 36
+custom_constants/margin_top = 64
+custom_constants/margin_left = 36
+custom_constants/margin_bottom = 64
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 36.0
+margin_top = 64.0
+margin_right = 1500.0
+margin_bottom = 584.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 1464.0
+margin_bottom = 60.0
 custom_fonts/font = SubResource( 1 )
 text = "Level Passed"
 align = 1
@@ -37,35 +56,124 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ReplayLevelButton" type="Button" parent="."]
-margin_left = 127.245
-margin_top = 444.246
-margin_right = 470.245
-margin_bottom = 538.246
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 1464.0
+margin_bottom = 470.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+custom_constants/margin_top = 64
+custom_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+margin_top = 64.0
+margin_right = 1464.0
+margin_bottom = 342.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CasualtiesLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 1464.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+text = "Casualties: 0"
+align = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 1464.0
+margin_bottom = 147.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.82
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 151.0
+margin_right = 1464.0
+margin_bottom = 278.0
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 289.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+
+[node name="RatingBarrel" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 293.0
+margin_right = 583.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="RatingBarrel2" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 587.0
+margin_right = 876.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="RatingBarrel3" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 880.0
+margin_right = 1170.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 1174.0
+margin_right = 1464.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 474.0
+margin_right = 1464.0
+margin_bottom = 520.0
+custom_constants/separation = 64
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 241.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="ReplayLevelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 305.0
+margin_right = 547.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Replay Level"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NextLevelButton" type="Button" parent="."]
-margin_left = 620.268
-margin_top = 446.149
-margin_right = 963.268
-margin_bottom = 540.149
+[node name="NextLevelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 611.0
+margin_right = 852.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Next Level"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackToMenuButton" type="Button" parent="."]
-margin_left = 1094.09
-margin_top = 449.924
-margin_right = 1437.09
-margin_bottom = 543.924
+[node name="BackToMenuButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 916.0
+margin_right = 1158.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Back to Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 1222.0
+margin_right = 1464.0
+margin_bottom = 46.0
+size_flags_horizontal = 3

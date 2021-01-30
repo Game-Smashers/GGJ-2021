@@ -164,7 +164,7 @@ func overlapping_room(body: KinematicBody2D) -> Room:
 
 
 func _on_Timer_timeout() -> void:
-	hud.end_level(true)
+	hud.end_screen.end_level(true, 1, 2)
 
 
 func _on_replay_level_button_pressed() -> void:
