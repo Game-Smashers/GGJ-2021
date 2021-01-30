@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if held:
 		global_transform.origin = get_global_mouse_position()
 		return
-	
+
 	velocity.y += GRAVITY * delta
 	if move_and_collide(velocity):
 		velocity = Vector2.ZERO

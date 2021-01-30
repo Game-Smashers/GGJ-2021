@@ -21,6 +21,7 @@ font_data = ExtResource( 4 )
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -34,21 +35,29 @@ anchor_bottom = 0.1
 margin_left = -1.8877
 margin_right = -1.8877
 margin_bottom = 37.6
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LevelVBox" type="VBoxContainer" parent="HBox"]
+anchor_top = 0.00806452
+anchor_bottom = 0.00806452
 margin_right = 117.0
 margin_bottom = 124.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="HBox/LevelVBox"]
+anchor_top = 0.00806452
+anchor_bottom = 0.00806452
 margin_right = 117.0
 margin_bottom = 60.0
 custom_fonts/font = SubResource( 1 )
 text = "Level"
 
 [node name="LevelNumberLabel" type="Label" parent="HBox/LevelVBox"]
+anchor_top = 0.00806452
+anchor_bottom = 0.00806452
 margin_top = 64.0
 margin_right = 117.0
 margin_bottom = 124.0
@@ -60,6 +69,7 @@ align = 1
 margin_left = 121.0
 margin_right = 195.0
 margin_bottom = 124.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.05
 
@@ -67,11 +77,13 @@ size_flags_stretch_ratio = 0.05
 margin_left = 199.0
 margin_right = 1698.0
 margin_bottom = 124.0
+mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="Control" type="Control" parent="HBox/VBoxContainer2"]
 margin_right = 1499.0
 margin_bottom = 28.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
@@ -85,6 +97,7 @@ margin_left = 0.0
 margin_top = 32.0
 margin_right = 1499.0
 margin_bottom = 92.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -93,6 +106,7 @@ custom_fonts/font = SubResource( 1 )
 margin_top = 96.0
 margin_right = 1499.0
 margin_bottom = 124.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
@@ -101,6 +115,7 @@ size_flags_stretch_ratio = 0.5
 margin_left = 1702.0
 margin_right = 1777.0
 margin_bottom = 124.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.05
 
@@ -118,6 +133,7 @@ margin_left = 868.776
 margin_top = 353.878
 margin_right = 1076.78
 margin_bottom = 421.878
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 2 )
 text = "Game Over"
 __meta__ = {
@@ -130,6 +146,7 @@ margin_left = 445.141
 margin_top = 510.111
 margin_right = 849.141
 margin_bottom = 565.111
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 3 )
 text = "You won with x seconds to spare"
 __meta__ = {
@@ -142,6 +159,7 @@ margin_left = 1098.12
 margin_top = 504.194
 margin_right = 1396.12
 margin_bottom = 553.194
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 3 )
 text = "There were x casualties"
 __meta__ = {
