@@ -3,7 +3,15 @@ extends Node2D
 var held_object = null
 
 onready var progress_bar = $ProgressBar
-onready var power_station = $PowerStation
+
+# Rooms
+onready var control_room = $Rooms/ControlRoom
+onready var cafeteria = $Rooms/Cafeteria
+onready var waste_room = $Rooms/WasteRoom
+onready var reactor_room = $Rooms/ReactorRoom
+onready var turbine_room = $Rooms/TurbineRoom
+
+onready var power_system = $PowerSystem
 
 var rooms = []
 
@@ -12,7 +20,7 @@ func _ready():
 		node.connect("clicked", self, "_on_grabbable_clicked")
 
 func _process(delta):
-	progress_bar.value = (power_station.current_power / power_station.target_power) * 100.0
+	progress_bar.value = (power_system.current_power / power_system.target_power) * 100.0
 
 func _on_grabbable_clicked(object):
 	if !held_object:

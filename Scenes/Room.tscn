@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Room.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/floor-texture.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
 
 uniform float darkness : hint_range(0, 1);
@@ -14,7 +15,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 6 )
 shader_param/darkness = 1.0
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -22,6 +23,10 @@ extents = Vector2( 325.675, 165.011 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 325.478, 5.07147 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 52
+font_data = ExtResource( 3 )
 
 [node name="Room" type="Area2D" groups=[
 "rooms",
@@ -34,7 +39,7 @@ shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
-position = Vector2( 0, -1.05946 )
+position = Vector2( -2.64868, -2.11892 )
 scale = Vector2( 20.3549, 10.3117 )
 texture = ExtResource( 2 )
 
@@ -45,5 +50,17 @@ mode = 1
 [node name="GroundCollider" type="CollisionShape2D" parent="Ground"]
 position = Vector2( -0.561218, -3.15033 )
 shape = SubResource( 4 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -274.0
+margin_top = -127.0
+margin_right = -97.0
+margin_bottom = -15.0
+custom_fonts/normal_font = SubResource( 5 )
+text = "Room
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="." to="." method="_on_Room_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Room_mouse_exited"]

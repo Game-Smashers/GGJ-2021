@@ -1,38 +1,48 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Factory.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/floor-texture.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/PowerStation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ControlRoom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/WasteRoom.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/ProgressBar.tscn" type="PackedScene" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 232.181, 9.08595 )
+[ext_resource path="res://Scenes/Cafeteria.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/ReactorRoom.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/TurbineRoom.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/PowerSystem.gd" type="Script" id=9]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="PowerStation" parent="." instance=ExtResource( 4 )]
-
-[node name="Ground" type="RigidBody2D" parent="."]
-position = Vector2( 230, 200 )
-mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="Ground"]
-scale = Vector2( 14.5151, 0.565224 )
-texture = ExtResource( 3 )
-
-[node name="Human" parent="." instance=ExtResource( 1 )]
-position = Vector2( 61.3218, 58.3235 )
-
-[node name="Human2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 213.494, 41.638 )
 
 [node name="ProgressBar" parent="." instance=ExtResource( 5 )]
 margin_left = 1202.42
 margin_top = 12.1486
 margin_right = 1492.42
 margin_bottom = 71.1486
+
+[node name="Rooms" type="Node" parent="."]
+
+[node name="ControlRoom" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 1581.07, 372.405 )
+
+[node name="Cafeteria" parent="Rooms" instance=ExtResource( 6 )]
+position = Vector2( 343.725, 192.924 )
+
+[node name="WasteRoom" parent="Rooms" instance=ExtResource( 4 )]
+position = Vector2( 1463.1, 877.914 )
+
+[node name="ReactorRoom" parent="Rooms" instance=ExtResource( 7 )]
+position = Vector2( 381.076, 888.983 )
+
+[node name="TurbineRoom" parent="Rooms" instance=ExtResource( 8 )]
+position = Vector2( 791.824, 543.791 )
+
+[node name="Humans" type="Node" parent="."]
+
+[node name="Human" parent="Humans" instance=ExtResource( 1 )]
+position = Vector2( 780.479, 165.012 )
+
+[node name="Human2" parent="Humans" instance=ExtResource( 1 )]
+position = Vector2( 953.352, 155.242 )
+
+[node name="PowerSystem" type="Node" parent="."]
+script = ExtResource( 9 )

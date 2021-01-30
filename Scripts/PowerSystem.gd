@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 var current_power = 0.0
 var power_start = 0.0
