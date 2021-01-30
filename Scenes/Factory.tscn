@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Factory.gd" type="Script" id=2]
@@ -9,27 +9,6 @@
 [ext_resource path="res://Scenes/ReactorRoom.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/TurbineRoom.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/PowerSystem.gd" type="Script" id=9]
-[ext_resource path="res://Shaders/Room.shader" type="Shader" id=10]
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 10 )
-shader_param/darkness = 1.0
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 10 )
-shader_param/darkness = 1.0
-
-[sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 10 )
-shader_param/darkness = 1.0
-
-[sub_resource type="ShaderMaterial" id=8]
-shader = ExtResource( 10 )
-shader_param/darkness = 1.0
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = ExtResource( 10 )
-shader_param/darkness = 1.0
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 2 )
@@ -43,23 +22,18 @@ margin_bottom = 71.1486
 [node name="Rooms" type="Node" parent="."]
 
 [node name="ControlRoom" parent="Rooms" instance=ExtResource( 3 )]
-material = SubResource( 2 )
 position = Vector2( 1581.07, 372.405 )
 
 [node name="Cafeteria" parent="Rooms" instance=ExtResource( 6 )]
-material = SubResource( 4 )
 position = Vector2( 343.725, 192.924 )
 
 [node name="WasteRoom" parent="Rooms" instance=ExtResource( 4 )]
-material = SubResource( 6 )
 position = Vector2( 1463.1, 877.914 )
 
 [node name="ReactorRoom" parent="Rooms" instance=ExtResource( 7 )]
-material = SubResource( 8 )
 position = Vector2( 381.076, 888.983 )
 
 [node name="TurbineRoom" parent="Rooms" instance=ExtResource( 8 )]
-material = SubResource( 10 )
 position = Vector2( 791.824, 543.791 )
 
 [node name="Humans" type="Node" parent="."]

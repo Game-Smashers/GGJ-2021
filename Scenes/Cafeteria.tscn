@@ -3,15 +3,15 @@
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=1]
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=2]
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/darkness = 1.0
 
 [node name="Room" instance=ExtResource( 2 )]
-material = SubResource( 4 )
+material = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-material = SubResource( 4 )
+material = SubResource( 1 )
 
 [node name="RichTextLabel" parent="." index="3"]
 margin_right = -59.0

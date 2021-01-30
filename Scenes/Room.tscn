@@ -17,6 +17,7 @@ extents = Vector2( 325.478, 5.07147 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 52
+use_filter = true
 font_data = ExtResource( 3 )
 
 [node name="Room" type="Area2D" groups=[
