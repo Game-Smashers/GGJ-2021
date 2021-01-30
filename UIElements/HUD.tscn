@@ -21,9 +21,9 @@ __meta__ = {
 
 [node name="HBox" type="HBoxContainer" parent="."]
 anchor_left = 0.01
-anchor_top = 0.02
+anchor_top = 0.01
 anchor_right = 0.99
-anchor_bottom = 0.1
+anchor_bottom = 0.05
 margin_left = -1.8877
 margin_right = -1.8877
 margin_bottom = 37.6
@@ -53,59 +53,74 @@ align = 1
 
 [node name="Control" type="Control" parent="HBox"]
 margin_left = 121.0
-margin_right = 195.0
+margin_right = 257.0
 margin_bottom = 124.0
 mouse_filter = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.05
+size_flags_stretch_ratio = 0.1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBox"]
-margin_left = 199.0
-margin_right = 1698.0
+margin_left = 261.0
+margin_right = 1630.0
 margin_bottom = 124.0
 mouse_filter = 2
 size_flags_horizontal = 3
+alignment = 1
 
 [node name="Control" type="Control" parent="HBox/VBoxContainer2"]
-margin_right = 1499.0
-margin_bottom = 29.0
+margin_right = 1369.0
+margin_bottom = 25.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.4
 
 [node name="PowerBar" parent="HBox/VBoxContainer2" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 33.0
-margin_right = 1499.0
-margin_bottom = 91.0
+margin_top = 29.0
+margin_right = 1369.0
+margin_bottom = 94.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Control2" type="Control" parent="HBox/VBoxContainer2"]
-margin_top = 95.0
-margin_right = 1499.0
+margin_top = 98.0
+margin_right = 1369.0
 margin_bottom = 124.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.4
 
 [node name="Control2" type="Control" parent="HBox"]
-margin_left = 1702.0
-margin_right = 1777.0
+margin_left = 1634.0
+margin_right = 1881.0
 margin_bottom = 124.0
 mouse_filter = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.05
+size_flags_stretch_ratio = 0.18
 
-[node name="TimerLabel" type="Label" parent="HBox"]
-margin_left = 1781.0
-margin_top = 32.0
-margin_right = 1881.0
-margin_bottom = 92.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+anchor_left = 0.01
+anchor_top = 0.015
+anchor_right = 0.05
+anchor_bottom = 0.015
+margin_left = 3.312
+margin_top = 130.0
+margin_right = 1920.31
+margin_bottom = 190.0
+mouse_filter = 2
+size_flags_horizontal = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLabel" type="Label" parent="VBoxContainer3"]
+margin_right = 1993.0
+margin_bottom = 60.0
 custom_fonts/font = SubResource( 1 )
 text = "01:00"
 
