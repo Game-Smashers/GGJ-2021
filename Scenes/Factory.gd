@@ -43,6 +43,9 @@ func _ready():
 		humans.append(human)
 		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
 		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
+		human.in_room = cafeteria
+
+	cafeteria.occupant_count = humans.size()
 
 	load_levels()
 	start_level(current_level_index)
@@ -60,14 +63,6 @@ func _process(delta):
 	hud.power = sin(delta * 30) + rand_range(0, 0.15)
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
-
-
-func _on_grabbable_clicked(object):
-	if !held_object:
-		held_object = object
-		held_object_start = held_object.transform.origin
-		var grab_offset = held_object.transform.origin - get_global_mouse_position()
-		held_object.pickup(grab_offset)
 
 
 func load_levels():
@@ -97,7 +92,11 @@ func _unhandled_input(event):
 			if hovered_human != null:
 				for human in humans:
 					human.selected = human == hovered_human
-				_on_grabbable_clicked(hovered_human)
+				selected_human = hovered_human
+				held_object = hovered_human
+				held_object_start = hovered_human.transform.origin
+				var grab_offset = hovered_human.transform.origin - get_global_mouse_position()
+				hovered_human.pickup(grab_offset)
 			else:
 				hovered_human = null
 
@@ -110,13 +109,15 @@ func _unhandled_input(event):
 						selected_room = room
 					else:
 						room.selected = false
-		else: # mouse released
+		else: # Mouse released
 			if held_object:
 				# Check for dropped humans in rooms
 				var human = held_object as Human
-				var dropped_over_room = overlapping_room(human)
-				held_object.drop() # velocity: Input.get_last_mouse_speed()
-				if not dropped_over_room:
+				var room = overlapping_room(human)
+				held_object.drop(room)
+				human.in_room = room
+				if room == null:
+					# If droped outside a room return to previous pos
 					held_object.transform.origin = held_object_start
 				held_object = null
 				get_tree().set_input_as_handled()
@@ -151,12 +152,12 @@ func on_human_mouse_exit(human):
 		hovered_human = null
 
 
-func overlapping_room(body: KinematicBody2D) -> bool:
+func overlapping_room(body: KinematicBody2D) -> Room:
 	for room in rooms:
 		room = room as Room
 		if room.overlaps_body(body):
-			return true
-	return false
+			return room
+	return null
 
 
 func _on_Timer_timeout() -> void:

@@ -10,6 +10,7 @@ var velocity: = Vector2.ZERO
 var held := false
 var hovered := false
 var selected := false
+var in_room: Room
 
 var grab_offset: Vector2
 
@@ -55,7 +56,15 @@ func pickup(grab_offset):
 	held = true
 	self.grab_offset = grab_offset
 
+	if in_room != null:
+		in_room.remove_occupant()
+		in_room = null
 
-func drop():
+
+func drop(room):
 	if held:
 		held = false
+	in_room = room
+
+	if room != null:
+		room.add_occupant()

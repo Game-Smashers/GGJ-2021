@@ -5,6 +5,9 @@ class_name Room
 
 export(Types.RoomType) var type
 
+var occupant_count: int
+
+
 var hovered: = false
 var selected: = false
 
@@ -22,3 +25,11 @@ func _process(delta):
 	elif hovered:
 		darkness = 0.8
 	material.set_shader_param("darkness", darkness)
+
+
+func add_occupant():
+	occupant_count += 1
+
+
+func remove_occupant():
+	occupant_count -= 1
