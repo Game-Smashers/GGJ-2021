@@ -73,6 +73,8 @@ func _process(delta):
 			if reactor_room.rods_down_percentage < 0.0:
 				reactor_room.rods_down_percentage = 0.0
 
+	reactor_room.set_rod_down_percent(reactor_room.rods_down_percentage)
+
 	var target_power_output = 80.0
 
 	var power_output = lerp(reactor_room.rods_up_power_output, reactor_room.rods_down_power_output, reactor_room.rods_down_percentage) * turbine_room.efficiency
