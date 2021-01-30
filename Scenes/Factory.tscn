@@ -48,11 +48,11 @@ position = Vector2( 1588.59, 902.932 )
 
 [node name="Humans" type="Node" parent="."]
 
-[node name="Human" parent="Humans" instance=ExtResource( 1 )]
+[node name="Human0" parent="Humans" instance=ExtResource( 1 )]
 position = Vector2( 780.479, 165.012 )
 
-[node name="Human2" parent="Humans" instance=ExtResource( 1 )]
-position = Vector2( 953.352, 155.242 )
+[node name="Human1" parent="Humans" instance=ExtResource( 1 )]
+position = Vector2( 893.454, 181.661 )
 
 [node name="BackgroundSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )

@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Prefabs/Human.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Shaders/Room.shader" type="Shader" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.1084, 30.6534 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/darkness = null
 
 [node name="Human" type="KinematicBody2D" groups=[
 "grabbable",
@@ -17,4 +22,5 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
 texture = ExtResource( 2 )
