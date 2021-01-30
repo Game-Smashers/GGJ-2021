@@ -46,10 +46,10 @@ position = Vector2( 1588.59, 902.932 )
 [node name="Humans" type="Node" parent="."]
 
 [node name="Human0" parent="Humans" instance=ExtResource( 1 )]
-position = Vector2( 780.479, 165.012 )
+position = Vector2( 111.556, 528.465 )
 
 [node name="Human1" parent="Humans" instance=ExtResource( 1 )]
-position = Vector2( 893.454, 181.661 )
+position = Vector2( 210.389, 535.214 )
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
