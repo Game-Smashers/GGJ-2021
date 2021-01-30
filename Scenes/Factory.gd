@@ -38,7 +38,12 @@ func _ready():
 
 	for room in rooms:
 		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
-		room.connect("mouse_exited", self, "on_room_mouse_exit")
+		room.connect("mouse_exited", self, "on_room_mouse_exit", [room.type])
+
+	for human in $Humans.get_children():
+		humans.append(human)
+		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
+		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
 
 	load_levels()
 	start_level(current_level_index)
@@ -62,7 +67,8 @@ func _on_grabbable_clicked(object):
 	if !held_object:
 		held_object = object
 		held_object_start = held_object.transform.origin
-		held_object.pickup()
+		var grab_offset = held_object.transform.origin - get_global_mouse_position()
+		held_object.pickup(grab_offset)
 
 
 func load_levels():
