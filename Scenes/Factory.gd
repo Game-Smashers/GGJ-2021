@@ -29,14 +29,10 @@ var hovered_room_index := -1
 var hovered_human: Human = null
 
 func _ready():
-	for node in get_tree().get_nodes_in_group("grabbable"):
-		node.connect("clicked", self, "_on_grabbable_clicked")
 	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
 	hud.end_screen.next_level_button.connect("pressed", self, "_on_next_level_button_pressed")
 	hud.end_screen.back_to_menu_button.connect("pressed", self, "_on_back_to_menu_button_pressed")
 
-
-func _ready():
 	# Must match ordering of Types.RoomType
 	rooms = [pump_room, turbine_room, reactor_room, waste_room, cafeteria, control_room]
 
