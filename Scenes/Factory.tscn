@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UIElements/HUD.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Scenes/Cafeteria.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/ReactorRoom.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/TurbineRoom.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/PowerSystem.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Factory.gd" type="Script" id=10]
 [ext_resource path="res://Audio/SFX/FactoryBackground.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scripts/Geiger.gd" type="Script" id=12]
@@ -54,9 +53,6 @@ position = Vector2( 780.479, 165.012 )
 
 [node name="Human2" parent="Humans" instance=ExtResource( 1 )]
 position = Vector2( 953.352, 155.242 )
-
-[node name="PowerSystem" type="Node" parent="."]
-script = ExtResource( 9 )
 
 [node name="BackgroundSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )

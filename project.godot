@@ -49,11 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/PowerStation.gd"
 }, {
-"base": "Node",
-"class": "PowerSystem",
-"language": "GDScript",
-"path": "res://Scripts/PowerSystem.gd"
-}, {
 "base": "Area2D",
 "class": "Room",
 "language": "GDScript",
@@ -73,7 +68,6 @@ _global_script_class_icons={
 "MainMenu": "",
 "PowerBar": "",
 "PowerStation": "",
-"PowerSystem": "",
 "Room": "",
 "Types": ""
 }

@@ -15,7 +15,6 @@ onready var waste_room = $Rooms/WasteRoom
 onready var reactor_room = $Rooms/ReactorRoom
 onready var turbine_room = $Rooms/TurbineRoom
 
-onready var power_system = $PowerSystem
 onready var timer: Timer = $Timer
 
 var levels = []
@@ -51,7 +50,7 @@ func start_level(level_index: int):
 
 
 func _process(delta):
-	hud.power = (power_system.current_power / power_system.target_power) * 100.0
+	hud.power = sin(delta * 30) + rand_range(0, 0.15)
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
 
