@@ -1,6 +1,10 @@
+class_name Human
+
 extends KinematicBody2D
 
 signal clicked
+
+onready var collision_shape = $CollisionShape2D
 
 const GRAVITY: = 75
 
@@ -9,7 +13,6 @@ var held: = false
 
 func _ready():
 	input_pickable = true
-	pass # Replace with function body.
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
