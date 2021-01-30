@@ -13,11 +13,13 @@ onready var sprite: Sprite = $Sprite
 func _ready():
 	material = sprite.material
 
+
 func _process(delta):
 	var darkness = 1.0
 	if hovered:
 		darkness = 0.8
 	material.set_shader_param("darkness", darkness)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
