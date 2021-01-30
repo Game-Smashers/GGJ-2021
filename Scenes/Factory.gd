@@ -17,6 +17,7 @@ onready var turbine_room = $Rooms/TurbineRoom
 
 onready var power_system = $PowerSystem
 onready var timer: Timer = $Timer
+onready var sfx_player = $Audio
 
 var game_running := true
 
@@ -89,6 +90,7 @@ func _unhandled_input(event):
 				for human in humans:
 					human.selected = human == hovered_human
 				_on_grabbable_clicked(hovered_human)
+				sfx_player.play_pickup_sound()
 			else:
 				hovered_human = null
 
@@ -107,6 +109,7 @@ func _unhandled_input(event):
 				var human = held_object as Human
 				var dropped_over_room = overlapping_room(human)
 				held_object.drop() # velocity: Input.get_last_mouse_speed()
+				sfx_player.play_drop_sound()
 				if not dropped_over_room:
 					held_object.transform.origin = held_object_start
 				held_object = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UIElements/HUD.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Audio/SFX/FactoryBackground.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scripts/Geiger.gd" type="Script" id=12]
 [ext_resource path="res://Audio/SFX/GeigerCounter.wav" type="AudioStream" id=13]
+[ext_resource path="res://Scripts/Audio.gd" type="Script" id=14]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 10 )
@@ -58,17 +59,20 @@ position = Vector2( 893.454, 181.661 )
 [node name="PowerSystem" type="Node" parent="."]
 script = ExtResource( 9 )
 
-[node name="BackgroundSFX" type="AudioStreamPlayer" parent="."]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource( 14 )
+
+[node name="BackgroundSFX" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 11 )
 volume_db = -28.846
 autoplay = true
 
-[node name="Geiger" type="AudioStreamPlayer" parent="BackgroundSFX"]
+[node name="Geiger" type="AudioStreamPlayer" parent="Audio/BackgroundSFX"]
 stream = ExtResource( 13 )
 volume_db = -30.365
 script = ExtResource( 12 )
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-[connection signal="finished" from="BackgroundSFX/Geiger" to="BackgroundSFX/Geiger" method="_on_Geiger_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="finished" from="Audio/BackgroundSFX/Geiger" to="Audio/BackgroundSFX/Geiger" method="_on_Geiger_finished"]
