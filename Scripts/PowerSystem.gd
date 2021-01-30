@@ -1,17 +1,18 @@
+class_name PowerSystem
+
 extends Node
 
 var current_power = 0.0
 var power_start = 0.0
 var target_power = 100.0
-var time_left = 100.0
-var start_time = 100.0
 
+var factory: Factory
+
+func _ready():
+	factory = get_parent()
 
 func _process(delta):
-	if time_left <= 0.0:
-		print("done")
-	else:
-		time_left -= delta
+	if factory.game_running:
 		gather_power(delta)
 		print("power: ", current_power)
 
