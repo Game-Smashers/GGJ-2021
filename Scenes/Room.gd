@@ -6,6 +6,7 @@ class_name Room
 export(Texture) var texture setget set_texture
 export(Vector2) var collision_size = Vector2(100, 100) setget set_collision_size
 export(Types.RoomType) var type
+export(float) var power_output
 
 var hovered: = false
 var selected: = false
@@ -19,17 +20,11 @@ func _ready():
 
 func _process(delta):
 	var darkness = 1.0
-	if hovered:
-		darkness = 0.8
 	if selected:
-		darkness *= 0.8
+		darkness = 0.6
+	elif hovered:
+		darkness = 0.8
 	material.set_shader_param("darkness", darkness)
-
-
-#func _unhandled_input(event: InputEvent) -> void:
-#	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-#		if not event.pressed:
-#			selected = hovered
 
 
 func set_texture(new_texture: Texture) -> void:

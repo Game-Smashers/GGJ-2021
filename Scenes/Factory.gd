@@ -15,7 +15,6 @@ onready var waste_room = $Rooms/WasteRoom
 onready var reactor_room = $Rooms/ReactorRoom
 onready var turbine_room = $Rooms/TurbineRoom
 
-onready var power_system = $PowerSystem
 onready var timer: Timer = $Timer
 
 var game_running := true
@@ -30,6 +29,9 @@ var selected_human: Human = null
 var selected_room: Room = null
 var hovered_room_index := -1
 var hovered_human: Human = null
+
+var current_power = 0.0
+var target_power = 100.0
 
 func _ready():
 	# Must match ordering of Types.RoomType
@@ -60,7 +62,6 @@ func _ready():
 		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
 		room.connect("mouse_exited", self, "on_room_mouse_exit", [room.type])
 
-	# Get all humans
 	for human in $Humans.get_children():
 		humans.append(human)
 		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
@@ -69,10 +70,12 @@ func _ready():
 	timer.start(current_level.time_limit)
 
 func _process(delta):
-	hud.power = (power_system.current_power / power_system.target_power) * 100.0
+	current_power = turbine_room.power_output
+	var power_percent = current_power / target_power
+
+	hud.power = power_percent
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
-
 
 func _on_grabbable_clicked(object: Node2D):
 	held_object = object
@@ -114,7 +117,9 @@ func _unhandled_input(event):
 			else:
 				for human in humans:
 					human.selected = false
-
+				if hovered_room_index == -1:
+					for room in rooms:
+						room.selected = false
 
 
 func on_room_mouse_enter(room_type):

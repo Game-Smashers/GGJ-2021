@@ -24,8 +24,12 @@ func _ready():
 func _physics_process(delta):
 	if held:
 		global_transform.origin = get_global_mouse_position() + grab_offset
-		global_transform.x = Vector2(-0.9,0.1).normalized()
-		global_transform.y = Vector2(0.1,0.9).normalized()
+		if grab_offset.x > 0:
+			global_transform.x = Vector2(0.9,0.1).normalized()
+			global_transform.y = Vector2(-0.1,0.9).normalized()
+		else:
+			global_transform.x = Vector2(-0.9,0.1).normalized()
+			global_transform.y = Vector2(0.1,0.9).normalized()
 		return
 
 	global_transform.x = Vector2(1.0, 0.0)
