@@ -78,10 +78,14 @@ func _process(delta):
 	var target_power_output = 80.0
 
 	var power_output = lerp(reactor_room.rods_up_power_output, reactor_room.rods_down_power_output, reactor_room.rods_down_percentage) * turbine_room.efficiency
-	power_output *= 1.0 - waste_room.waste_amount
+	power_output *= 1.0 - clamp(waste_room.waste_amount / waste_room.waste_capacity, 0.0, 0.99)
+	power_output /= target_power_output
 	hud.power = power_output / target_power_output * 0.5
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
+
+	var added_waste = power_output * reactor_room.waste_creation_speed
+	waste_room.add_waste(added_waste)
 
 
 func load_levels():

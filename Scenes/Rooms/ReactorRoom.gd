@@ -10,12 +10,13 @@ onready var reactor_rods: TextureRect = $Container/ReactorRods
 export(float) var rods_down_power_output = 20.0
 export(float) var rods_up_power_output = 100.0
 
+export(float) var waste_creation_speed = 0.02
+
 var rods_down: bool = false
 # 0 = up, 1 = down
 var rods_down_percentage: float = 0.0
 
 var rod_move_speed := 1.0
-
 var rods_down_y = 120
 
 func _ready():
@@ -26,6 +27,7 @@ func _ready():
 	else:
 		button_up.disabled = true
 		button_down.disabled = false
+
 
 func _on_ButtonUp_pressed():
 	rods_down = false

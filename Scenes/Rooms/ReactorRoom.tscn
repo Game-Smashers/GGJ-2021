@@ -13,6 +13,7 @@
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 shader_param/darkness = 1.0
+shader_param/col_mul = Plane( 1, 1, 1, 1 )
 
 [node name="Room" instance=ExtResource( 1 )]
 material = SubResource( 1 )

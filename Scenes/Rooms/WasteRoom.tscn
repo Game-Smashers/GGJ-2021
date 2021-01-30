@@ -7,6 +7,7 @@
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 shader_param/darkness = 1.0
+shader_param/col_mul = Plane( 1, 1, 1, 1 )
 
 [node name="Room" instance=ExtResource( 1 )]
 material = SubResource( 1 )
@@ -20,3 +21,13 @@ position = Vector2( -5.82709, -3.17838 )
 [node name="RichTextLabel" parent="." index="3"]
 text = "Waste
 "
+
+[node name="ProgressBar" type="ProgressBar" parent="." index="4"]
+margin_left = -118.0
+margin_top = 133.5
+margin_right = 118.0
+margin_bottom = 147.5
+max_value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

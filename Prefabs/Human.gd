@@ -14,7 +14,7 @@ var in_room: Room
 
 var grab_offset: Vector2
 
-var sprite_material
+var sprite_material: Material
 
 func _ready():
 	input_pickable = true
