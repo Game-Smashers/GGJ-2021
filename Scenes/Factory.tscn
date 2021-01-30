@@ -60,3 +60,5 @@ script = ExtResource( 9 )
 stream = ExtResource( 11 )
 volume_db = -34.16
 autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
