@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UIElements/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Prefabs/ProgressBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fonts/Badaboom.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
 use_filter = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 4 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -102,3 +111,39 @@ margin_right = 1881.0
 margin_bottom = 92.0
 custom_fonts/font = SubResource( 1 )
 text = "01:00"
+
+[node name="GameOverText" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 868.776
+margin_top = 353.878
+margin_right = 1076.78
+margin_bottom = 421.878
+custom_fonts/normal_font = SubResource( 2 )
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YouWonText" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 445.141
+margin_top = 510.111
+margin_right = 849.141
+margin_bottom = 565.111
+custom_fonts/normal_font = SubResource( 3 )
+text = "You won with x seconds to spare"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CasulatiesText" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 1098.12
+margin_top = 504.194
+margin_right = 1396.12
+margin_bottom = 553.194
+custom_fonts/normal_font = SubResource( 3 )
+text = "There were x casualties"
+__meta__ = {
+"_edit_use_anchors_": false
+}
