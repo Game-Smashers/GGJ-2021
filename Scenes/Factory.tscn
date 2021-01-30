@@ -67,5 +67,8 @@ autoplay = true
 stream = ExtResource( 13 )
 volume_db = -30.365
 script = ExtResource( 12 )
-[connection signal="finished" from="BackgroundSFX/Geiger" to="BackgroundSFX/Geiger" method="_on_Geiger_finished"]
+
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="finished" from="BackgroundSFX/Geiger" to="BackgroundSFX/Geiger" method="_on_Geiger_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

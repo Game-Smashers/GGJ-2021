@@ -5,7 +5,7 @@ extends Node2D
 var held_object: Node2D = null
 var held_object_start = Vector2(0, 0)
 
-onready var hud: HUD = $CanvasLayer/HUD
+onready var hud = $CanvasLayer/HUD
 
 # Rooms
 onready var pump_room = $Rooms/WaterPumpRoom
@@ -16,9 +16,9 @@ onready var reactor_room = $Rooms/ReactorRoom
 onready var turbine_room = $Rooms/TurbineRoom
 
 onready var power_system = $PowerSystem
+onready var timer: Timer = $Timer
 
 var game_running := true
-var time_left := 0.0
 
 var levels = []
 var current_level_index := 0
@@ -53,21 +53,18 @@ func _ready():
 	for level_name in level_names:
 		levels.append(load(level_name))
 
-	var current_level = levels[current_level_index]
-	time_left = current_level.TimeLimitSeconds as float
+	var current_level: Level = levels[current_level_index]
 
 	for room in rooms:
 		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
 		room.connect("mouse_exited", self, "on_room_mouse_exit")
 
+	timer.start(current_level.time_limit)
+
 func _process(delta):
 	hud.power = (power_system.current_power / power_system.target_power) * 100.0
-
-	if game_running:
-		time_left -= delta
-		if time_left < 0:
-			time_left = 0
-			game_running = false
+	hud.minutes = int(timer.time_left / 60)
+	hud.seconds = int(timer.time_left) % 60
 
 
 func _on_grabbable_clicked(object):
@@ -119,3 +116,7 @@ func overlapping_room(body: KinematicBody2D) -> bool:
 		if room.overlaps_body(body):
 			return true
 	return false
+
+
+func _on_Timer_timeout() -> void:
+	game_running = false
