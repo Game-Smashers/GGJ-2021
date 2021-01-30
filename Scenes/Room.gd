@@ -1,10 +1,11 @@
-class_name Room
-
 tool
 extends Area2D
 
+class_name Room
+
 export(Texture) var texture setget set_texture
 export(Vector2) var collision_size = Vector2(100, 100) setget set_collision_size
+export(Types.RoomType) var type
 
 var hovered: = false
 var selected: = false
@@ -25,10 +26,10 @@ func _process(delta):
 	material.set_shader_param("darkness", darkness)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		if not event.pressed:
-			selected = hovered
+#func _unhandled_input(event: InputEvent) -> void:
+#	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+#		if not event.pressed:
+#			selected = hovered
 
 
 func set_texture(new_texture: Texture) -> void:
@@ -40,11 +41,3 @@ func set_collision_size(new_collision_size: Vector2):
 	var shape: = collision_shape.shape as RectangleShape2D
 	shape.extents = new_collision_size / 2
 	collision_size = new_collision_size
-
-
-func _on_Room_mouse_entered() -> void:
-	hovered = true
-
-
-func _on_Room_mouse_exited() -> void:
-	hovered = false

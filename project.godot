@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "Room",
 "language": "GDScript",
 "path": "res://Scenes/Room.gd"
+}, {
+"base": "Reference",
+"class": "Types",
+"language": "GDScript",
+"path": "res://Scripts/Types.gd"
 } ]
 _global_script_class_icons={
 "Factory": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "MainMenu": "",
 "PowerStation": "",
 "PowerSystem": "",
-"Room": ""
+"Room": "",
+"Types": ""
 }
 
 [application]
