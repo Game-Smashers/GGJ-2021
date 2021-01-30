@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UIElements/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Prefabs/ProgressBar.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+anchor_left = 0.01
+anchor_top = 0.02
+anchor_right = 0.99
+anchor_bottom = 0.1
+margin_left = -1.8877
+margin_right = -1.8877
+margin_bottom = 37.6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelVBox" type="VBoxContainer" parent="HBox"]
+margin_right = 117.0
+margin_bottom = 124.0
+
+[node name="Label" type="Label" parent="HBox/LevelVBox"]
+margin_right = 117.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 1 )
+text = "Level"
+
+[node name="LevelNumberLabel" type="Label" parent="HBox/LevelVBox"]
+margin_top = 64.0
+margin_right = 117.0
+margin_bottom = 124.0
+custom_fonts/font = SubResource( 1 )
+text = "1"
+align = 1
+
+[node name="Control" type="Control" parent="HBox"]
+margin_left = 121.0
+margin_right = 195.0
+margin_bottom = 124.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBox"]
+margin_left = 199.0
+margin_right = 1698.0
+margin_bottom = 124.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="HBox/VBoxContainer2"]
+margin_right = 1499.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="PowerBar" parent="HBox/VBoxContainer2" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 32.0
+margin_right = 1499.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+
+[node name="Control2" type="Control" parent="HBox/VBoxContainer2"]
+margin_top = 96.0
+margin_right = 1499.0
+margin_bottom = 124.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Control2" type="Control" parent="HBox"]
+margin_left = 1702.0
+margin_right = 1777.0
+margin_bottom = 124.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="TimerLabel" type="Label" parent="HBox"]
+margin_left = 1781.0
+margin_top = 32.0
+margin_right = 1881.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 1 )
+text = "01:00"
