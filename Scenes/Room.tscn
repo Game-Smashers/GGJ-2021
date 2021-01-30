@@ -3,43 +3,34 @@
 [ext_resource path="res://Scenes/Room.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/floor-texture.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Shaders/Room.shader" type="Shader" id=4]
 
-[sub_resource type="Shader" id=6]
-code = "shader_type canvas_item;
-
-uniform float darkness : hint_range(0, 1);
-
-void fragment() {
-	COLOR = texture(TEXTURE, UV) * darkness;
-    //COLOR = vec4(1.0, 0.0, 0.0, 1.0);
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 6 )
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
 shader_param/darkness = 1.0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 325.675, 165.011 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 325.478, 5.07147 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 52
 font_data = ExtResource( 3 )
 
 [node name="Room" type="Area2D" groups=[
 "rooms",
 ]]
-material = SubResource( 2 )
+material = SubResource( 1 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 2 )
-position = Vector2( -2.64868, -2.11892 )
+material = SubResource( 1 )
+position = Vector2( 0.529696, -2.11892 )
 scale = Vector2( 20.3549, 10.3117 )
 texture = ExtResource( 2 )
 
@@ -49,14 +40,14 @@ mode = 1
 
 [node name="GroundCollider" type="CollisionShape2D" parent="Ground"]
 position = Vector2( -0.561218, -3.15033 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = -274.0
 margin_top = -127.0
 margin_right = -97.0
 margin_bottom = -15.0
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 4 )
 text = "Room
 "
 __meta__ = {

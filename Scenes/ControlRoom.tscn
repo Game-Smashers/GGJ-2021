@@ -1,25 +1,17 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shaders/Room.shader" type="Shader" id=2]
 
-[sub_resource type="Shader" id=6]
-code = "shader_type canvas_item;
-
-uniform float darkness : hint_range(0, 1);
-
-void fragment() {
-	COLOR = texture(TEXTURE, UV) * darkness;
-    //COLOR = vec4(1.0, 0.0, 0.0, 1.0);
-}"
-
-[sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
 shader_param/darkness = 1.0
 
 [node name="Room" instance=ExtResource( 1 )]
+material = SubResource( 2 )
 
 [node name="Sprite" parent="." index="1"]
-material = SubResource( 7 )
+material = SubResource( 2 )
 
 [node name="RichTextLabel" parent="." index="3"]
 margin_right = 2.0
