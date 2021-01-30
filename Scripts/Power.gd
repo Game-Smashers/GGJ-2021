@@ -12,10 +12,12 @@ var time_left = 100.0
 var start_time = 100.0
 
 var progress_bar
+var rooms = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	progress_bar = get_node("ProgressBar")
+	rooms.append(get_node("Room"))
 	pass
 
 #update
