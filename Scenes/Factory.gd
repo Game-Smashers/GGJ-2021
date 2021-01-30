@@ -8,11 +8,11 @@ var held_object_start = Vector2(0, 0)
 onready var hud: HUD = $CanvasLayer/HUD
 
 # Rooms
-onready var pump_room = $Rooms/WaterPumpRoom
-onready var cafeteria = $Rooms/Cafeteria
-onready var waste_room = $Rooms/WasteRoom
-onready var reactor_room = $Rooms/ReactorRoom
-onready var turbine_room = $Rooms/TurbineRoom
+onready var pump_room: WaterPumpRoom = $Rooms/WaterPumpRoom
+onready var cafeteria: Cafeteria = $Rooms/Cafeteria
+onready var waste_room: WasteRoom = $Rooms/WasteRoom
+onready var reactor_room: ReactorRoom = $Rooms/ReactorRoom
+onready var turbine_room: TurbineRoom = $Rooms/TurbineRoom
 
 onready var timer: Timer = $Timer
 onready var sound_player = $Audio
@@ -61,7 +61,25 @@ func start_level(level_index: int):
 
 
 func _process(delta):
-	hud.power = sin(delta * 30) + rand_range(0, 0.15)
+	# Calculate power output
+	if reactor_room.rods_down:
+		if reactor_room.rods_down_percentage != 1.0:
+			reactor_room.rods_down_percentage += delta * reactor_room.rod_move_speed
+			if reactor_room.rods_down_percentage > 1.0:
+				reactor_room.rods_down_percentage = 1.0
+	else:
+		if reactor_room.rods_down_percentage != 0.0:
+			reactor_room.rods_down_percentage -= delta * reactor_room.rod_move_speed
+			if reactor_room.rods_down_percentage < 0.0:
+				reactor_room.rods_down_percentage = 0.0
+
+	reactor_room.set_rod_down_percent(reactor_room.rods_down_percentage)
+
+	var target_power_output = 80.0
+
+	var power_output = lerp(reactor_room.rods_up_power_output, reactor_room.rods_down_power_output, reactor_room.rods_down_percentage) * turbine_room.efficiency
+	power_output *= 1.0 - waste_room.waste_amount
+	hud.power = power_output / target_power_output * 0.5
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
 
