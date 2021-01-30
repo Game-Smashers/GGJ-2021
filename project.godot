@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Room",
+"class": "Cafeteria",
+"language": "GDScript",
+"path": "res://Scenes/Rooms/Cafeteria.gd"
+}, {
 "base": "Control",
 "class": "EndScreen",
 "language": "GDScript",
@@ -44,17 +49,38 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UIElements/PowerBar.gd"
 }, {
+"base": "Room",
+"class": "ReactorRoom",
+"language": "GDScript",
+"path": "res://Scenes/Rooms/ReactorRoom.gd"
+}, {
 "base": "Area2D",
 "class": "Room",
 "language": "GDScript",
 "path": "res://Scenes/Rooms/Room.gd"
 }, {
+"base": "Room",
+"class": "TurbineRoom",
+"language": "GDScript",
+"path": "res://Scenes/Rooms/TurbineRoom.gd"
+}, {
 "base": "Reference",
 "class": "Types",
 "language": "GDScript",
 "path": "res://Scripts/Types.gd"
+}, {
+"base": "Room",
+"class": "WasteRoom",
+"language": "GDScript",
+"path": "res://Scenes/Rooms/WasteRoom.gd"
+}, {
+"base": "Room",
+"class": "WaterPumpRoom",
+"language": "GDScript",
+"path": "res://Scenes/Rooms/WaterPumpRoom.gd"
 } ]
 _global_script_class_icons={
+"Cafeteria": "",
 "EndScreen": "",
 "Factory": "",
 "HUD": "",
@@ -62,8 +88,12 @@ _global_script_class_icons={
 "Level": "",
 "MainMenu": "",
 "PowerBar": "",
+"ReactorRoom": "",
 "Room": "",
-"Types": ""
+"TurbineRoom": "",
+"Types": "",
+"WasteRoom": "",
+"WaterPumpRoom": ""
 }
 
 [application]
