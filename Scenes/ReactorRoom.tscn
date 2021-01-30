@@ -9,6 +9,7 @@ shader_param/darkness = 1.0
 
 [node name="Room" instance=ExtResource( 1 )]
 material = SubResource( 1 )
+type = 2
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 1 )

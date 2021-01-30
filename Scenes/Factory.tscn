@@ -24,6 +24,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1920.0
 margin_bottom = 1080.0
+mouse_filter = 2
 
 [node name="Rooms" type="Node" parent="."]
 
@@ -68,3 +69,4 @@ stream = ExtResource( 13 )
 volume_db = -30.365
 script = ExtResource( 12 )
 [connection signal="finished" from="BackgroundSFX/Geiger" to="BackgroundSFX/Geiger" method="_on_Geiger_finished"]
+[node name="Timer" type="Timer" parent="."]

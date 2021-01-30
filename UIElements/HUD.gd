@@ -11,6 +11,24 @@ onready var power_bar: ProgressBar = $HBox/VBoxContainer2/PowerBar
 onready var level_label: Label = $HBox/LevelVBox/LevelNumberLabel
 onready var timer_label: Label = $HBox/TimerLabel
 
+onready var game_over_text: RichTextLabel = $GameOverText
+onready var you_won_text: RichTextLabel = $YouWonText
+onready var casualties_text: RichTextLabel = $CasulatiesText
+
+
+func set_game_over(game_over: bool, seconds_remaining: float, casualties: int) -> void:
+	if game_over:
+		game_over_text.visible = true
+		you_won_text.visible = true
+		casualties_text.visible = true
+	else:
+		game_over_text.visible = false
+		you_won_text.visible = false
+		casualties_text.visible = false
+		you_won_text.text = "You won with " + String(seconds_remaining) + " seconds to spare"
+		casualties_text.text = "There were " + String(casualties) + " casualties"
+
+
 func set_power(new_power: float) -> void:
 	power_bar.value = new_power
 	power = new_power
