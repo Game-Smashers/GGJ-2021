@@ -56,7 +56,6 @@ func _ready():
 		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
 		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
 		human_starting_positions.append(human.transform.origin)
-		human.in_room = cafeteria
 		cafeteria.add_occupant(human)
 
 	start_level(current_level_index)
@@ -71,7 +70,7 @@ func start_level(level_index: int):
 
 	for i in range(humans.size()):
 		humans[i].transform.origin = human_starting_positions[i]
-		humans[i].on_restart()
+		humans[i].on_restart(cafeteria)
 
 	selected_human = null
 	selected_room = null
@@ -140,6 +139,10 @@ func _unhandled_input(event):
 		if event.pressed:
 			# Check for human selections
 			if hovered_human != null:
+				if selected_room != null:
+					selected_room.selected = false
+					selected_room = null
+
 				for human in humans:
 					human.selected = human == hovered_human
 				selected_human = hovered_human
@@ -158,7 +161,9 @@ func _unhandled_input(event):
 					if room.type == rooms[hovered_room_index].type:
 						room.selected = true
 						selected_room = room
-						selected_human = null
+						if selected_human != null:
+							selected_human.selected = false
+							selected_human = null
 					else:
 						room.selected = false
 		else: # Mouse released

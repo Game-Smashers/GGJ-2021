@@ -32,3 +32,5 @@ animation = "dizzy1"
 
 [node name="DazedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]

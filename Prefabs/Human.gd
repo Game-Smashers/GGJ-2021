@@ -6,6 +6,7 @@ export(int, 1, 5) var sprite_variant: = 1
 onready var collision_shape = $CollisionShape2D
 onready var sprite: AnimatedSprite = $Sprite
 onready var dazed_audio = $DazedSound
+onready var timer: Timer = $Timer
 
 const GRAVITY: = 75
 const DAZE_DURATION: = 2
@@ -21,10 +22,10 @@ var room_unskilled_in
 
 var names_list = ["Alex", "Taylor", "Addison", "Jordan", "Parker", "Logan", "Drew", "Adrian", "Flynn", "Quinn"]
 var human_name: String
-
 var grab_offset: Vector2
-
 var sprite_material: Material
+var last_room: Room
+var dazed := false
 
 func _ready():
 	input_pickable = true
@@ -39,7 +40,8 @@ func _ready():
 
 	room_skilled_in = Types.human_traits[sprite_variant - 1][0]
 	room_unskilled_in = Types.human_traits[sprite_variant - 1][1]
-	print(human_name + ": " + String(room_skilled_in) + " " + String(room_unskilled_in))
+
+	timer.connect("timeout", self, "_on_daze_finished")
 
 
 func _physics_process(delta):
@@ -77,6 +79,8 @@ func pickup(grab_offset):
 	self.grab_offset = grab_offset
 	sprite.animation = "hang%d" % sprite_variant
 
+	last_room = in_room
+
 	if in_room != null:
 		in_room.remove_occupant(self)
 		in_room = null
@@ -85,24 +89,31 @@ func pickup(grab_offset):
 func drop(room):
 	if held:
 		held = false
+	var same_room = (last_room == room)
 	in_room = room
-	sprite.animation = "dizzy%d" % sprite_variant
-	dazed_audio.play()
-	get_tree().create_timer(DAZE_DURATION).connect("timeout", self, "_on_daze_finished")
-
+	if same_room and not dazed:
+		sprite.animation = "work%d" % sprite_variant
+	else:
+		sprite.animation = "dizzy%d" % sprite_variant
+		if not same_room:
+			dazed_audio.play()
+			timer.start(DAZE_DURATION)
+			dazed = true
 	if room != null:
 		room.add_occupant(self)
 
 
 func _on_daze_finished() -> void:
+	dazed = false
 	dazed_audio.stop()
 	sprite.animation = "work%d" % sprite_variant
 
 
-func on_restart():
+func on_restart(starting_room):
 	velocity = Vector2.ZERO
 	held = false
 	hovered = false
 	selected = false
-	in_room = null
+	in_room = starting_room
+	last_room = starting_room
 
