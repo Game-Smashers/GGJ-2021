@@ -108,7 +108,7 @@ func _process(delta):
 	var power_output = lerp(reactor_room.rods_up_power_output, reactor_room.rods_down_power_output, reactor_room.rods_down_percentage)
 	power_output *= turbine_room.efficiency
 	# More waste slows down production speed
-	power_output *= 1.0 - clamp(waste_room.waste_amount / waste_room.waste_capacity, 0.0, 0.99)
+	power_output = lerp(power_output, 1.0 - clamp(waste_room.waste_amount / waste_room.waste_capacity, 0.0, 0.99), waste_room.power_output_impact)
 	#print(power_output)
 	hud.power = power_output
 	hud.minutes = int(timer.time_left / 60)
