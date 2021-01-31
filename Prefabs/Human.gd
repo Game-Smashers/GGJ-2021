@@ -15,7 +15,7 @@ var held := false
 var hovered := false
 var selected := false
 var in_room: Room
-
+var energy_level := 0.0
 var room_skilled_in
 var room_unskilled_in
 

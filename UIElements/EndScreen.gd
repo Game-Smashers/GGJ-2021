@@ -8,14 +8,14 @@ const CASUALTIES_FORMAT: = "Casualties: %d"
 const SUCCESS_RATING_MODULATE: = Color.white
 const FAILURE_RATING_MODULATE: = Color(1, 1, 1, 0.2)
 
-onready var title_label: Label = $MarginContainer/VBoxContainer/TitleLabel
-onready var casualties_label: Label = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CasualtiesLabel
-onready var replay_level_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/ReplayLevelButton
-onready var next_level_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/NextLevelButton
-onready var back_to_menu_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/BackToMenuButton
-onready var rating_barrel1: Control = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RatingBarrel
-onready var rating_barrel2: Control = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RatingBarrel2
-onready var rating_barrel3: Control = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RatingBarrel3
+onready var title_label: Label = $Panel/MarginContainer/VBoxContainer/TitleLabel
+onready var casualties_label: Label = $Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CasualtiesLabel
+onready var replay_level_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/ReplayLevelButton
+onready var next_level_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/NextLevelButton
+onready var back_to_menu_button: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/BackToMenuButton
+onready var rating_barrel1: Control = $Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RatingBarrel
+onready var rating_barrel2: Control = $Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RatingBarrel2
+onready var rating_barrel3: Control = $Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RatingBarrel3
 
 func end_level(success: bool, casualties: int, rating: int) -> void:
 	if success:

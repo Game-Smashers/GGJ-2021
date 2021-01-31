@@ -72,8 +72,4 @@ func stop_alarm():
 func show_status_panel(title: String, value: float):
 	status_panel_title_label.text = title
 	status_panel_progress_bar.value = value
-	status_panel.show()
-
-
-func hide_status_panel():
-	status_panel.hide()
+	status_panel.get_child(0).show()
