@@ -11,6 +11,7 @@ var full_timer := 0.0
 
 export(float) var blink_speed = 10.0
 export(float) var clean_speed_per_worker = 1.0
+export(float) var power_output_impact = 0.85
 
 func _ready():
 	on_restart()

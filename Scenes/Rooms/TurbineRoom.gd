@@ -6,7 +6,7 @@ onready var efficiency_progress_bar: ProgressBar = $EfficiencyProgressBar
 
 var efficiency: float = 1.0
 
-const fix_speed := 0.02
+const fix_speed := 0.2
 const break_down_speed = 0.035
 
 func _ready():
@@ -19,7 +19,7 @@ func _process(delta):
 
 	if occupants.size() > 0:
 		var undazed_occupant_count := get_undazed_occupant_count()
-		efficiency += undazed_occupant_count * delta
+		efficiency += undazed_occupant_count * delta * fix_speed
 	else:
 		efficiency -= delta * break_down_speed
 	efficiency = clamp(efficiency, 0.0, 1.0)
