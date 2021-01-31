@@ -20,7 +20,9 @@ func break_down():
 	seconds_since_break_down = 0.0
 
 
-func on_fixed():
+func on_fixed(first_time = false):
+	if (!first_time):
+		play_fixed_sound()
 	broken_down = false
 	seconds_until_fixed = 0.0
 	seconds_until_next_break_down = float(randi() % 5 + 10)
@@ -47,6 +49,20 @@ func _process(delta):
 
 func on_restart():
 	.on_restart()
-	on_fixed()
+	on_fixed(true)
 	material.set_shader_param("col_mul", Color(1, 1, 1, 1))
 
+onready var fixed_sound = preload("res://Audio/SFX/Fixed.wav")
+
+func play_fixed_sound():
+	play_sound(fixed_sound)
+	pass
+
+func play_sound(audio_stream):
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = audio_stream
+	player.play()
+	yield(player, "finished")
+	remove_child(player)
+	player.queue_free()
