@@ -29,6 +29,7 @@ var selected_human: Human = null
 var selected_room: Room = null
 var hovered_room_index := -1
 var hovered_human: Human = null
+var human_starting_positions = []
 
 func _ready():
 	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
@@ -47,6 +48,7 @@ func _ready():
 		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
 		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
 		human.in_room = cafeteria
+		human_starting_positions.append(human.transform.origin)
 
 	cafeteria.occupant_count = humans.size()
 
@@ -59,6 +61,9 @@ func start_level(level_index: int):
 	hud.level = level_index
 	hud.end_screen.hide()
 	timer.start(level.time_limit)
+
+	for i in range(humans.size()):
+		humans[i].transform.origin = human_starting_positions[i]
 
 
 func _process(delta):
