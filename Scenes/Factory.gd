@@ -96,8 +96,8 @@ func start_level(level_index: int):
 	for i in range(humans.size()):
 		humans[i].transform.origin = human_spawn_spots[i % human_spawn_spots.size()].transform.origin
 		humans[i].energy_drain_speed = levels[current_level_index].human_energy_drain_multiplier
-		humans[i].on_restart(cafeteria)
 		humans[i].sprite_variant = randi() % 5
+		humans[i].on_restart(cafeteria)
 		#var spawn_spot_index = i % human_spawn_spots.size()
 		#new_human.transform.origin = human_spawn_spots[spawn_spot_index].transform.origin
 		#print(String(new_human.transform.origin) + " " + String(spawn_spot_index))
