@@ -9,10 +9,10 @@ onready var hud: HUD = $CanvasLayer/HUD
 
 # Rooms
 onready var pump_room: WaterPumpRoom = $Rooms/WaterPumpRoom
-onready var cafeteria: Cafeteria = $Rooms/Cafeteria
-onready var waste_room: WasteRoom = $Rooms/WasteRoom
-onready var reactor_room: ReactorRoom = $Rooms/ReactorRoom
 onready var turbine_room: TurbineRoom = $Rooms/TurbineRoom
+onready var reactor_room: ReactorRoom = $Rooms/ReactorRoom
+onready var waste_room: WasteRoom = $Rooms/WasteRoom
+onready var cafeteria: Cafeteria = $Rooms/Cafeteria
 
 onready var timer: Timer = $Timer
 onready var sound_player = $Audio

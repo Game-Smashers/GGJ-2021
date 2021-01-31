@@ -28,7 +28,6 @@ func _ready():
 	on_restart()
 
 func _process(delta):
-	._process(delta)
 	var colour
 	if temperature > 0.5:
 		colour = lerp(Color.white, colour_hot, clamp((temperature - 0.5) * 2.0, 0.0, 1.0))
@@ -53,6 +52,7 @@ func set_rod_down_percent(rods_down):
 	reactor_rods.margin_top = rods_down * rods_down_y
 
 func on_restart():
+	.on_restart()
 	rods_down = false
 	rods_down_percentage = 0.0
 	temperature = 0.5

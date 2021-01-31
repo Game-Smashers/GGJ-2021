@@ -13,7 +13,6 @@ export(float) var blink_speed = 10.0
 export(float) var clean_speed_per_worker = 1.0
 
 func _ready():
-	._ready()
 	on_restart()
 
 
@@ -22,8 +21,6 @@ func add_waste(amount):
 
 
 func _process(delta):
-	._process(delta)
-
 	if occupant_count > 0:
 		waste_amount -= occupant_count * delta * clean_speed_per_worker
 		if waste_amount < 0.0:
