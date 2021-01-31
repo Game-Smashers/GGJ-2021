@@ -127,6 +127,9 @@ func _process(delta):
 		if seconds_in_red >= max_seconds_in_red:
 			hud.end_screen.end_level(false, 0, 0)
 			timer.stop()
+
+			for human in humans:
+				human.on_level_end()
 	else:
 		seconds_in_red = 0.0
 
