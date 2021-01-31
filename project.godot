@@ -106,6 +106,10 @@ config/icon="res://icon.png"
 
 default_bus_layout=""
 
+[autoload]
+
+Music="*res://Scenes/Music.tscn"
+
 [display]
 
 window/size/width=1920
