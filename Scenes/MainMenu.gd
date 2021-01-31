@@ -53,6 +53,7 @@ func _start_game(idx: int) -> void:
 
 func _on_StartGameButton_pressed() -> void:
 	play_sound(button_sound)
+	yield(get_tree().create_timer(0.5), "timeout")
 	_start_game(0)
 
 
@@ -63,6 +64,7 @@ func _on_level_button_pressed(idx: int) -> void:
 
 func _on_QuitButton_pressed() -> void:
 	play_sound(button_sound)
+	yield(get_tree().create_timer(0.5), "timeout")
 	get_tree().quit()
 
 

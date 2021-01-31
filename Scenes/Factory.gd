@@ -19,6 +19,7 @@ onready var sound_player = $Audio
 
 onready var fullscreen_tex: TextureRect = $CanvasLayer/TextureRect
 
+onready var button_sound = preload("res://Audio/SFX/ButtonPress.wav")
 const temperature_curve: Curve = preload("res://Curves/temperature_curve.tres")
 
 var levels = []
@@ -215,12 +216,30 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_replay_level_button_pressed() -> void:
+	play_sound(button_sound)
 	start_level(current_level_index)
 
 
 func _on_next_level_button_pressed() -> void:
+	play_sound(button_sound)
 	start_level(current_level_index + 1)
 
 
 func _on_back_to_menu_button_pressed() -> void:
+	play_sound(button_sound)
+	yield(get_tree().create_timer(0.5), "timeout")
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+
+func play_sound_from_file(audio_file):
+	if File.new().file_exists(audio_file):
+		var audio_stream = load(audio_file) 
+		play_sound(audio_stream)
+
+func play_sound(audio_stream):
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = audio_stream
+	player.play()
+	yield(player, "finished")
+	remove_child(player)
+	player.queue_free()
