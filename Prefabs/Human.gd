@@ -16,9 +16,12 @@ var held := false
 var hovered := false
 var selected := false
 var in_room: Room
-var energy_level := 0.0
+var energy_level := 1.0
 var room_skilled_in
 var room_unskilled_in
+
+const energy_drain_speed = 0.1
+const energy_regain_speed = 0.2
 
 var names_list = ["Alex", "Taylor", "Addison", "Jordan", "Parker", "Logan", "Drew", "Adrian", "Flynn", "Quinn"]
 var human_name: String
@@ -71,6 +74,13 @@ func _process(delta):
 		darkness = 0.8
 	sprite_material.set_shader_param("darkness", darkness)
 
+	if in_room:
+		if in_room.type == Types.RoomType.CAFETERIA:
+			energy_level += energy_regain_speed * delta
+		elif not dazed:
+			energy_level -= energy_drain_speed * delta
+		energy_level = clamp(energy_level, 0.0, 1.0)
+
 
 func pickup(grab_offset):
 	if held:
@@ -86,6 +96,14 @@ func pickup(grab_offset):
 		in_room = null
 
 
+func daze():
+	dazed_audio.stop()
+	dazed_audio.play()
+	timer.start(DAZE_DURATION)
+	sprite.animation = "dizzy%d" % sprite_variant
+	dazed = true
+
+
 func drop(room):
 	if held:
 		held = false
@@ -94,19 +112,20 @@ func drop(room):
 	if same_room and not dazed:
 		sprite.animation = "work%d" % sprite_variant
 	else:
-		sprite.animation = "dizzy%d" % sprite_variant
 		if not same_room:
-			dazed_audio.play()
-			timer.start(DAZE_DURATION)
-			dazed = true
+			daze()
 	if room != null:
 		room.add_occupant(self)
 
 
 func _on_daze_finished() -> void:
-	dazed = false
 	dazed_audio.stop()
+	dazed = false
 	sprite.animation = "work%d" % sprite_variant
+
+	if energy_level == 0.0:
+		# too tired to do anything...
+		daze()
 
 
 func on_restart(starting_room):
@@ -114,6 +133,10 @@ func on_restart(starting_room):
 	held = false
 	hovered = false
 	selected = false
+	dazed = false
+	energy_level = 1.0
 	in_room = starting_room
 	last_room = starting_room
+	dazed_audio.stop()
+
 
