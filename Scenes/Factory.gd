@@ -50,7 +50,6 @@ func _ready():
 
 	cafeteria.occupant_count = humans.size()
 
-	load_levels()
 	start_level(current_level_index)
 
 
@@ -91,26 +90,6 @@ func _process(delta):
 
 	var added_waste = power_output * reactor_room.waste_creation_speed
 	waste_room.add_waste(added_waste)
-
-
-func load_levels():
-	var levels_dir_path = "res://Levels/"
-	var level_names = []
-	var levels_dir = Directory.new()
-	levels_dir.open(levels_dir_path)
-	levels_dir.list_dir_begin()
-
-	while true:
-		var file = levels_dir.get_next()
-		if file == "":
-			break
-		elif not file.begins_with("."):
-			level_names.append(levels_dir_path + file)
-
-	levels_dir.list_dir_end()
-
-	for level_name in level_names:
-		levels.append(load(level_name))
 
 
 func _unhandled_input(event):
