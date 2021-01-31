@@ -65,6 +65,8 @@ func _ready():
 
 
 func start_level(level_index: int):
+	randomize()
+
 	current_level_index = level_index
 	var level: Level = levels[level_index]
 
@@ -95,6 +97,7 @@ func start_level(level_index: int):
 		humans[i].transform.origin = human_spawn_spots[i % human_spawn_spots.size()].transform.origin
 		humans[i].energy_drain_speed = levels[current_level_index].human_energy_drain_multiplier
 		humans[i].on_restart(cafeteria)
+		humans[i].sprite_variant = randi() % 5
 		#var spawn_spot_index = i % human_spawn_spots.size()
 		#new_human.transform.origin = human_spawn_spots[spawn_spot_index].transform.origin
 		#print(String(new_human.transform.origin) + " " + String(spawn_spot_index))
