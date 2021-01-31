@@ -40,7 +40,6 @@ var selected_human: Human = null
 var selected_room: Room = null
 var hovered_room_index := -1
 var hovered_human: Human = null
-var human_starting_positions = []
 
 var in_red := false
 var seconds_in_red := 0.0
@@ -62,40 +61,48 @@ func _ready():
 	for child in human_spawn_spot_containers.get_children():
 		human_spawn_spots.append(child)
 
-	for i in range(levels[current_level_index].employees):
-		var new_human = human_prefab.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
-		humans.append(new_human)
-		humans_container.add_child(new_human)
-		new_human.transform.origin = human_spawn_spots[i % human_spawn_spots.size()].transform.origin
-
-	for human in humans:
-		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
-		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
-		human_starting_positions.append(human.transform.origin)
-		cafeteria.add_occupant(human)
-
 	start_level(current_level_index)
 
 
 func start_level(level_index: int):
+	current_level_index = level_index
 	var level: Level = levels[level_index]
+
+	for i in range(rooms.size()):
+		rooms[i].on_restart()
+
+	for human in humans:
+		human.get_parent().remove_child(human)
+
+	humans.clear()
+	print(humans_container.get_child_count())
+
+	for i in range(levels[current_level_index].employees):
+		var new_human = human_prefab.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
+		humans.append(new_human)
+		humans_container.add_child(new_human)
+
+	for human in humans:
+		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
+		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
+		cafeteria.add_occupant(human)
 
 	hud.level = level_index
 	hud.end_screen.hide()
 	timer.start(level.time_limit)
 
 	for i in range(humans.size()):
-		humans[i].transform.origin = human_starting_positions[i]
+		humans[i].transform.origin = human_spawn_spots[i % human_spawn_spots.size()].transform.origin
 		humans[i].energy_drain_speed = levels[current_level_index].human_energy_drain_multiplier
 		humans[i].on_restart(cafeteria)
+		#var spawn_spot_index = i % human_spawn_spots.size()
+		#new_human.transform.origin = human_spawn_spots[spawn_spot_index].transform.origin
+		#print(String(new_human.transform.origin) + " " + String(spawn_spot_index))
 
 	selected_human = null
 	selected_room = null
 	hovered_room_index = -1
 	hovered_human = null
-
-	for i in range(rooms.size()):
-		rooms[i].on_restart()
 
 	in_red = false
 	seconds_in_red = 0.0
@@ -263,7 +270,9 @@ func _on_replay_level_button_pressed() -> void:
 
 func _on_next_level_button_pressed() -> void:
 	play_sound(button_sound)
-	start_level(current_level_index + 1)
+	var new_level_index = clamp(current_level_index + 1, 0, levels.size() - 1)
+	print(new_level_index)
+	start_level(new_level_index)
 
 
 func _on_back_to_menu_button_pressed() -> void:

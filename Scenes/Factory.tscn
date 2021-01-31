@@ -29,6 +29,7 @@ animations = [ {
 } ]
 
 [node name="Root" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 10 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
