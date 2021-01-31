@@ -58,11 +58,9 @@ func _process(delta):
 			seconds_since_break_down += delta
 			if seconds_since_break_down >= seconds_until_next_break_down:
 				break_down()
-
-		material.set_shader_param("col_mul", Color(1, 1, 1, 1))
+			material.set_shader_param("col_mul", Color(1, 1, 1, 1))
 	else:
 		material.set_shader_param("col_mul", Color(1, 1, 1, 1))
-
 
 func on_restart():
 	.on_restart()
