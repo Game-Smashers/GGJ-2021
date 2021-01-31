@@ -1,5 +1,5 @@
-class_name Human
 extends KinematicBody2D
+class_name Human
 
 export(int, 1, 5) var sprite_variant: = 1
 
@@ -14,6 +14,9 @@ var held := false
 var hovered := false
 var selected := false
 var in_room: Room
+
+var room_skilled_in
+var room_unskilled_in
 
 var names_list = ["Alex", "Taylor", "Addison", "Jordan", "Parker", "Logan", "Drew", "Adrian", "Flynn", "Quinn"]
 var human_name: String
@@ -32,7 +35,10 @@ func _ready():
 	randomize()
 
 	human_name = names_list[randi() % names_list.size()]
-	print(human_name)
+
+	room_skilled_in = Types.human_traits[sprite_variant - 1][0]
+	room_unskilled_in = Types.human_traits[sprite_variant - 1][1]
+	print(human_name + ": " + String(room_skilled_in) + " " + String(room_unskilled_in))
 
 
 func _physics_process(delta):

@@ -36,8 +36,7 @@ var human_starting_positions = []
 var in_red := false
 var seconds_in_red := 0.0
 var max_seconds_in_red := 5.0
-#var full_screen_red_flash := 0.0
-#var full_screen_flash_speed := 15.0
+
 
 func _ready():
 	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
