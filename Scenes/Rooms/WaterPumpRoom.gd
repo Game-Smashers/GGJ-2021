@@ -9,7 +9,13 @@ const seconds_to_fix := 4.0
 var seconds_since_break_down := 0.0
 var seconds_until_next_break_down := 0.0
 
+onready var fixed_sound = preload("res://Audio/SFX/Fixed.wav")
+onready var fixing_sound = preload("res://Audio/SFX/RepairNoises.wav")
+onready var fixing_player = AudioStreamPlayer.new()
+
 func _ready():
+	add_child(fixing_player)
+	fixing_player.stream = fixing_sound
 	randomize()
 	on_restart()
 
@@ -31,10 +37,13 @@ func on_fixed(first_time = false):
 func _process(delta):
 	if broken_down:
 		if occupants.size() > 0:
+			if (!fixing_player.playing):
+				fixing_player.play()
 			var undazed_occupant_count := get_undazed_occupant_count()
 			seconds_until_fixed -= undazed_occupant_count * delta
 			if seconds_until_fixed < 0.0:
 				on_fixed()
+				fixing_player.stop()
 
 		var alpha = clamp(seconds_until_fixed / seconds_to_fix, 0.0, 1.0)
 		var col_mul = lerp(Color.white, Color(0.8, 0.1, 0.1, 1.0), alpha)
@@ -51,8 +60,6 @@ func on_restart():
 	.on_restart()
 	on_fixed(true)
 	material.set_shader_param("col_mul", Color(1, 1, 1, 1))
-
-onready var fixed_sound = preload("res://Audio/SFX/Fixed.wav")
 
 func play_fixed_sound():
 	play_sound(fixed_sound)
