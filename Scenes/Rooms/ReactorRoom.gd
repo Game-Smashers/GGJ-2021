@@ -15,24 +15,17 @@ export(float) var waste_creation_speed = 0.02
 export(Color) var colour_cold
 export(Color) var colour_hot
 
+export(float) var rod_move_speed = 1.0
+export(float) var rods_down_y = 120.0
+
 var rods_down: bool = false
 # 0 = up, 1 = down
 var rods_down_percentage: float = 0.0
 
-var rod_move_speed := 1.0
-var rods_down_y = 120
-
-var temperature: float = 0.0
+var temperature: float = 0.5
 
 func _ready():
-	if rods_down:
-		button_up.disabled = false
-		button_down.disabled = true
-		set_rod_down_percent(1.0)
-	else:
-		button_up.disabled = true
-		button_down.disabled = false
-
+	on_restart()
 
 func _process(delta):
 	._process(delta)
@@ -58,3 +51,17 @@ func _on_ButtonDown_pressed():
 
 func set_rod_down_percent(rods_down):
 	reactor_rods.margin_top = rods_down * rods_down_y
+
+func on_restart():
+	rods_down = false
+	rods_down_percentage = 0.0
+	temperature = 0.5
+
+	if rods_down:
+		button_up.disabled = false
+		button_down.disabled = true
+		set_rod_down_percent(1.0)
+	else:
+		button_up.disabled = true
+		button_down.disabled = false
+		set_rod_down_percent(0.0)

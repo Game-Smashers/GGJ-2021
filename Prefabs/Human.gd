@@ -80,3 +80,12 @@ func drop(room):
 
 func _on_daze_finished() -> void:
 	sprite.animation = "work%d" % sprite_variant
+
+
+func on_restart():
+	velocity = Vector2.ZERO
+	held = false
+	hovered = false
+	selected = false
+	in_room = null
+

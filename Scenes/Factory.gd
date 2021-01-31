@@ -64,6 +64,15 @@ func start_level(level_index: int):
 
 	for i in range(humans.size()):
 		humans[i].transform.origin = human_starting_positions[i]
+		humans[i].on_restart()
+
+	selected_human = null
+	selected_room = null
+	hovered_room_index = -1
+	hovered_human = null
+
+	for i in range(rooms.size()):
+		rooms[i].on_restart()
 
 
 func _process(delta):

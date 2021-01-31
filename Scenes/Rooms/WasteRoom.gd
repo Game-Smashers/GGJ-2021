@@ -5,9 +5,9 @@ class_name WasteRoom
 onready var waste_container: Node2D = $Waste
 onready var progress_bar: ProgressBar = $ProgressBar
 
-var waste_amount: float = 0.0
-var waste_capacity: float = 10.0
+export(float) var waste_capacity = 10.0
 
+var waste_amount: float = 0.0
 var full_timer := 0.0
 
 export(float) var blink_speed = 10.0
@@ -15,7 +15,7 @@ export(float) var clean_speed_per_worker = 1.0
 
 func _ready():
 	._ready()
-	material.set_shader_param("col_mul", Color(1, 1, 1, 1))
+	on_restart()
 
 
 func add_waste(amount):
@@ -37,3 +37,9 @@ func _process(delta):
 		var col_mul = lerp(Color.white, Color(0.8, 0.1, 0.1, 1.0), alpha)
 		material.set_shader_param("col_mul", col_mul)
 
+
+func on_restart():
+	.on_restart()
+	waste_amount = 0.0
+	full_timer = 0.0
+	material.set_shader_param("col_mul", Color(1, 1, 1, 1))

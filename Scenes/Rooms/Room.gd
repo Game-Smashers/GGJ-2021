@@ -6,8 +6,6 @@ class_name Room
 export(Types.RoomType) var type
 
 var occupant_count: int
-
-
 var hovered: = false
 var selected: = false
 
@@ -33,3 +31,9 @@ func add_occupant():
 
 func remove_occupant():
 	occupant_count -= 1
+
+
+func on_restart():
+	hovered = false
+	selected = false
+	occupant_count = 0
