@@ -24,6 +24,7 @@ func _ready():
 	sprite_material = sprite.material.duplicate()
 	sprite.set_material(sprite_material)
 	sprite.animation = "work%d" % sprite_variant
+	sprite.playing = true
 
 
 func _physics_process(delta):
