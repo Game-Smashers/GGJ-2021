@@ -5,7 +5,7 @@ class_name ReactorRoom
 onready var button_up: TextureButton = $ButtonUp
 onready var button_down: TextureButton = $ButtonDown
 
-onready var reactor_rods: TextureRect = $Container/ReactorRods
+onready var reactor_rods: TextureProgress = $TextureProgress
 
 export(float) var rods_down_power_output = 0.4
 export(float) var rods_up_power_output = 0.8
@@ -49,7 +49,8 @@ func _on_ButtonDown_pressed():
 
 
 func set_rod_down_percent(rods_down):
-	reactor_rods.margin_top = rods_down * rods_down_y
+	# reactor_rods.margin_top = rods_down * rods_down_y
+	reactor_rods.value = 1.0 - rods_down
 
 func on_restart():
 	.on_restart()
