@@ -4,6 +4,7 @@ uniform float darkness : hint_range(0, 1);
 uniform vec4 col_mul = vec4(1, 1, 1, 1);
 
 void fragment() {
-	COLOR = texture(TEXTURE, UV) * darkness;
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= darkness;
     COLOR *= col_mul;
 }
