@@ -36,7 +36,8 @@ func _process(delta):
 			if seconds_until_fixed < 0.0:
 				on_fixed()
 
-		var alpha = clamp(seconds_until_fixed / seconds_to_fix, 0.0, 1.0)
+		# Always show some red to make fixed state clearer
+		var alpha = clamp(seconds_until_fixed / seconds_to_fix * 0.5 + 0.5, 0.0, 1.0)
 		var col_mul = lerp(Color.white, Color(0.8, 0.1, 0.1, 1.0), alpha)
 		material.set_shader_param("col_mul", col_mul)
 	else:
