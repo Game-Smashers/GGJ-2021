@@ -1,23 +1,42 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=1]
 [ext_resource path="res://Scenes/Rooms/Room.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Rooms/Cafeteria.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Erik/Canteen.png" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/darkness = 1.0
+shader_param/col_mul = Plane( 1, 1, 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 416.649, 137.254 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 418.213, 5.07147 )
 
 [node name="Room" instance=ExtResource( 2 )]
 material = SubResource( 1 )
 script = ExtResource( 3 )
 type = 4
 
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 2 )
+
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 1 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+
+[node name="GroundCollider" parent="Ground" index="0"]
+position = Vector2( -3.9248, -40.1498 )
+shape = SubResource( 3 )
 
 [node name="RichTextLabel" parent="." index="3"]
-margin_right = -59.0
-margin_bottom = -13.0
+margin_left = -413.871
+margin_top = -186.69
+margin_right = -198.871
+margin_bottom = -72.6902
 text = "Cafeteria
 "

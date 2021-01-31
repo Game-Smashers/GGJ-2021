@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Rooms/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=2]
@@ -9,11 +9,18 @@
 [ext_resource path="res://Sprites/arrow-disabled.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/black-square.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/white-square.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Erik/Reactor.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 shader_param/darkness = 1.0
 shader_param/col_mul = Plane( 1, 1, 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 335.607, 257.453 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 333.771, 5.07147 )
 
 [node name="Room" instance=ExtResource( 1 )]
 material = SubResource( 1 )
@@ -22,10 +29,24 @@ type = 2
 colour_cold = Color( 0.329412, 0.592157, 0.603922, 1 )
 colour_hot = Color( 0.662745, 0.180392, 0.180392, 1 )
 
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 2 )
+
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 1 )
+position = Vector2( 0.53, 0 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 10 )
+
+[node name="GroundCollider" parent="Ground" index="0"]
+position = Vector2( 0, 87.0338 )
+shape = SubResource( 3 )
 
 [node name="RichTextLabel" parent="." index="3"]
+margin_left = -328.745
+margin_top = -309.168
+margin_right = -151.745
+margin_bottom = -197.168
 text = "Reactor
 "
 
@@ -59,8 +80,8 @@ __meta__ = {
 }
 
 [node name="Container" type="MarginContainer" parent="." index="6"]
-margin_left = -95.0
-margin_top = -109.0
+margin_left = -110.0
+margin_top = -95.0
 margin_right = -23.0
 margin_bottom = 42.0
 __meta__ = {
@@ -68,8 +89,8 @@ __meta__ = {
 }
 
 [node name="ReactorRodsBG" type="TextureRect" parent="Container" index="0"]
-margin_right = 72.0
-margin_bottom = 151.0
+margin_right = 87.0
+margin_bottom = 137.0
 texture = ExtResource( 9 )
 stretch_mode = 1
 __meta__ = {
@@ -77,8 +98,8 @@ __meta__ = {
 }
 
 [node name="ReactorRods" type="TextureRect" parent="Container" index="1"]
-margin_right = 72.0
-margin_bottom = 151.0
+margin_right = 87.0
+margin_bottom = 137.0
 texture = ExtResource( 8 )
 stretch_mode = 1
 __meta__ = {
