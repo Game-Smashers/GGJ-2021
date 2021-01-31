@@ -55,10 +55,9 @@ func _ready():
 		humans.append(human)
 		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
 		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
-		human.in_room = cafeteria
 		human_starting_positions.append(human.transform.origin)
-
-	cafeteria.occupant_count = humans.size()
+		human.in_room = cafeteria
+		cafeteria.add_occupant(human)
 
 	start_level(current_level_index)
 

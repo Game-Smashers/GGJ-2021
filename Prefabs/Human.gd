@@ -77,7 +77,7 @@ func pickup(grab_offset):
 	sprite.animation = "hang%d" % sprite_variant
 
 	if in_room != null:
-		in_room.remove_occupant()
+		in_room.remove_occupant(self)
 		in_room = null
 
 
@@ -89,7 +89,7 @@ func drop(room):
 	get_tree().create_timer(DAZE_DURATION).connect("timeout", self, "_on_daze_finished")
 
 	if room != null:
-		room.add_occupant()
+		room.add_occupant(self)
 
 
 func _on_daze_finished() -> void:

@@ -5,7 +5,7 @@ class_name Room
 
 export(Types.RoomType) var type
 
-var occupant_count: int
+var occupants = []
 var hovered: = false
 var selected: = false
 
@@ -30,15 +30,22 @@ func _process(delta):
 	material.set_shader_param("darkness", darkness)
 
 
-func add_occupant():
-	occupant_count += 1
+func add_occupant(occupant):
+	occupants.append(occupant)
 
 
-func remove_occupant():
-	occupant_count -= 1
+func remove_occupant(occupant):
+	occupants.erase(occupant)
 
 
 func on_restart():
 	hovered = false
 	selected = false
-	occupant_count = 0
+	occupants.clear()
+
+func get_undazed_occupant_count() -> int:
+	var undazed_occupant_count := 0
+	for human in occupants:
+		if not human.sprite.animation.begins_with('dizzy'):
+			undazed_occupant_count += 1
+	return undazed_occupant_count

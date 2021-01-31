@@ -21,8 +21,9 @@ func add_waste(amount):
 
 
 func _process(delta):
-	if occupant_count > 0:
-		waste_amount -= occupant_count * delta * clean_speed_per_worker
+	if occupants.size() > 0:
+		var undazed_occupant_count := get_undazed_occupant_count()
+		waste_amount -= undazed_occupant_count * delta * clean_speed_per_worker
 		if waste_amount < 0.0:
 			waste_amount = 0.0
 

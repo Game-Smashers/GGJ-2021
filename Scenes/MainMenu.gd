@@ -81,7 +81,7 @@ func _on_back_button_pressed() -> void:
 
 func play_sound_from_file(audio_file):
 	if File.new().file_exists(audio_file):
-		var audio_stream = load(audio_file) 
+		var audio_stream = load(audio_file)
 		play_sound(audio_stream)
 
 func play_sound(audio_stream):
