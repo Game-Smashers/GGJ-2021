@@ -11,6 +11,8 @@ onready var power_bar: PowerBar = $HBox/VBoxContainer2/PowerBar
 onready var level_label: Label = $HBox/LevelVBox/LevelNumberLabel
 onready var timer_label: Label = $VBoxContainer3/TimerLabel
 onready var end_screen: EndScreen = $EndScreen
+onready var alarm_panel: Panel = $AlarmPanel
+onready var alarm_animation_player: AnimationPlayer = $AlarmAnimationPlayer
 
 var flashing_red := false
 var solid_red := false
@@ -52,3 +54,13 @@ func _process(delta):
 		timer_label.add_color_override("font_color", lerp(Color.white, Color.red, alpha))
 	else:
 		timer_label.add_color_override("font_color", Color.white)
+
+
+func start_alarm():
+	alarm_panel.show()
+	alarm_animation_player.play("alarmFlash")
+
+
+func stop_alarm():
+	alarm_panel.hide()
+	alarm_animation_player.stop()
