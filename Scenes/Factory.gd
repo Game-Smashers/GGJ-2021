@@ -77,7 +77,6 @@ func start_level(level_index: int):
 		human.get_parent().remove_child(human)
 
 	humans.clear()
-	print(humans_container.get_child_count())
 
 	for i in range(levels[current_level_index].employees):
 		var new_human = human_prefab.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
@@ -274,7 +273,6 @@ func _on_replay_level_button_pressed() -> void:
 func _on_next_level_button_pressed() -> void:
 	play_sound(button_sound)
 	var new_level_index = clamp(current_level_index + 1, 0, levels.size() - 1)
-	print(new_level_index)
 	start_level(new_level_index)
 
 
