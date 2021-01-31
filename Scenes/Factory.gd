@@ -89,6 +89,14 @@ func start_level(level_index: int):
 
 	hud.level = level_index
 	hud.end_screen.hide()
+
+	if level_index == 0:
+		hud.tutorial_screen.show()
+		set_process(false)
+		yield(hud.tutorial_screen.start_game_button, "pressed")
+		set_process(true)
+		hud.tutorial_screen.hide()
+
 	timer.start(level.time_limit)
 
 	for i in range(humans.size()):

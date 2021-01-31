@@ -11,6 +11,7 @@ onready var power_bar: PowerBar = $HBox/VBoxContainer2/PowerBar
 onready var level_label: Label = $HBox/LevelVBox/LevelNumberLabel
 onready var timer_label: Label = $VBoxContainer3/TimerLabel
 onready var end_screen: EndScreen = $EndScreen
+onready var tutorial_screen = $Tutorial
 onready var alarm_panel: Panel = $AlarmPanel
 onready var alarm_animation_player: AnimationPlayer = $AlarmAnimationPlayer
 onready var status_panel: Control = $StatusPanel/VBoxContainer

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UIElements/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UIElements/PowerBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UIElements/Resources/WindowStylebox.stylebox" type="StyleBox" id=6]
 [ext_resource path="res://UIElements/ProgressBar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UIElements/Tutorial.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -186,6 +187,9 @@ align = 1
 [node name="TextureProgress" parent="StatusPanel/VBoxContainer" instance=ExtResource( 7 )]
 
 [node name="EndScreen" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="Tutorial" parent="." instance=ExtResource( 8 )]
 visible = false
 
 [node name="AlarmPanel" type="Panel" parent="."]
