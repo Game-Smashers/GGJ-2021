@@ -39,6 +39,9 @@ func on_fixed(first_time = false):
 
 
 func _process(delta):
+	if game_is_paused:
+		return
+
 	if not disable_breakdown:
 		if broken_down:
 			if occupants.size() > 0:
@@ -65,6 +68,10 @@ func _process(delta):
 func on_restart():
 	.on_restart()
 	on_fixed(true)
+	broken_down = false
+	seconds_until_fixed = 0.0
+	seconds_since_break_down = 0.0
+	seconds_until_next_break_down = float(randi() % 5 + 10)
 	material.set_shader_param("col_mul", Color(1, 1, 1, 1))
 
 func play_fixed_sound():

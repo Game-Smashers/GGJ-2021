@@ -18,6 +18,9 @@ func _ready():
 
 
 func _process(delta):
+	if game_is_paused:
+		return
+
 	if not disable_breakdown:
 		if occupants.size() > 0:
 			var undazed_occupant_count := get_undazed_occupant_count()

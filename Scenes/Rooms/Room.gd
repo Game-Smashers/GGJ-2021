@@ -8,6 +8,7 @@ export(Types.RoomType) var type
 var occupants = []
 var hovered: = false
 var selected: = false
+var game_is_paused := false
 
 var room_name: String
 
@@ -41,6 +42,7 @@ func remove_occupant(occupant):
 func on_restart():
 	hovered = false
 	selected = false
+	game_is_paused = false
 	occupants.clear()
 
 func get_undazed_occupant_count() -> int:

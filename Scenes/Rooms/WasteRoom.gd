@@ -23,6 +23,9 @@ func add_waste(amount):
 
 
 func _process(delta):
+	if game_is_paused:
+		return
+
 	if occupants.size() > 0:
 		var undazed_occupant_count := get_undazed_occupant_count()
 		waste_amount -= undazed_occupant_count * delta * clean_speed_per_worker

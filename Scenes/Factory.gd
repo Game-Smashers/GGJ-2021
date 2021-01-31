@@ -45,6 +45,7 @@ var in_red := false
 var seconds_in_red := 0.0
 var max_seconds_in_red := 5.0
 
+var game_paused := false
 
 func _ready():
 	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
@@ -102,13 +103,13 @@ func start_level(level_index: int):
 
 	randomize()
 	var SpriteVariant = (randi()%5) +1
-	
+
 	for i in range(humans.size()):
 		humans[i].transform.origin = human_spawn_spots[i % human_spawn_spots.size()].transform.origin
 		humans[i].energy_drain_speed = levels[current_level_index].human_energy_drain_multiplier
 		humans[i].sprite_variant = ((SpriteVariant + i) % 5) +1
 		humans[i].on_restart(cafeteria)
-		
+
 		#var spawn_spot_index = i % human_spawn_spots.size()
 		#new_human.transform.origin = human_spawn_spots[spawn_spot_index].transform.origin
 		#print(String(new_human.transform.origin) + " " + String(spawn_spot_index))
@@ -126,10 +127,13 @@ func start_level(level_index: int):
 	turbine_room.disable_breakdown = levels[current_level_index].disable_turbine_breakdown
 	pump_room.disable_breakdown = levels[current_level_index].disable_water_pump_breakdown
 
-	get_tree().paused = false
+	unpause_game()
 
 
 func _process(delta):
+	if game_paused:
+		return
+
 	if in_red:
 		fullscreen_tex.material.set_shader_param("col_mul", Color(0.9, 0.1, 0.1, clamp(seconds_in_red / max_seconds_in_red * 0.6, 0.0, 1.0))) #pow(sin(full_screen_red_flash * full_screen_flash_speed) * 0.5 + 0.5, 3.0)))
 	else:
@@ -176,7 +180,7 @@ func _process(delta):
 			for human in humans:
 				human.on_level_end()
 
-			get_tree().paused = true
+			pause_game()
 	else:
 		seconds_in_red = 0.0
 
@@ -186,7 +190,22 @@ func _process(delta):
 	waste_room.add_waste(added_waste * levels[current_level_index].waste_room_fill_speed_multiplier)
 
 
+func unpause_game():
+	game_paused = false
+	for room in rooms:
+		room.game_is_paused = false
+
+
+func pause_game():
+	game_paused = true
+	for room in rooms:
+		room.game_is_paused = true
+
+
 func _unhandled_input(event):
+	if game_paused:
+		return
+
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
 			# Check for human selections
@@ -275,6 +294,7 @@ func overlapping_room(body: KinematicBody2D) -> Room:
 
 func _on_Timer_timeout() -> void:
 	hud.end_screen.end_level(true, 1, 2)
+	pause_game()
 
 
 func _on_replay_level_button_pressed() -> void:
