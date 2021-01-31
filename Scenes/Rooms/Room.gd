@@ -12,7 +12,7 @@ var selected: = false
 var room_name: String
 
 onready var collision_shape: CollisionShape2D = $CollisionShape2D
-onready var sprite: Sprite = $Sprite
+onready var sprite = $Sprite
 
 func _ready():
 	material = sprite.material

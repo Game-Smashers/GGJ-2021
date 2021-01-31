@@ -96,10 +96,11 @@ position = Vector2( 960, 540 )
 scale = Vector2( 4, 4 )
 z_index = -1
 frames = SubResource( 2 )
-frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
 }
 [connection signal="finished" from="Audio/Geiger" to="Audio/Geiger" method="_on_Geiger_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Rooms/ReactorRoom"]
