@@ -34,9 +34,9 @@ position = Vector2( -3.9248, -40.1498 )
 shape = SubResource( 3 )
 
 [node name="RichTextLabel" parent="." index="3"]
-margin_left = -633.874
-margin_top = -138.424
-margin_right = -418.874
-margin_bottom = -24.4243
+margin_left = -408.987
+margin_top = -228.221
+margin_right = -193.987
+margin_bottom = -114.221
 text = "Cafeteria
 "

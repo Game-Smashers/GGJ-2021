@@ -31,7 +31,7 @@ margin_bottom = 1080.0
 position = Vector2( 948, 509 )
 
 [node name="Cafeteria" parent="Rooms" instance=ExtResource( 6 )]
-position = Vector2( 653, 900 )
+position = Vector2( 845.542, 900.124 )
 
 [node name="WasteRoom" parent="Rooms" instance=ExtResource( 4 )]
 position = Vector2( 1569, 900 )
@@ -40,7 +40,7 @@ position = Vector2( 1569, 900 )
 position = Vector2( 1562, 428 )
 
 [node name="TurbineRoom" parent="Rooms" instance=ExtResource( 8 )]
-position = Vector2( 347, 506 )
+position = Vector2( 347.943, 357.96 )
 
 [node name="Humans" type="Node" parent="."]
 

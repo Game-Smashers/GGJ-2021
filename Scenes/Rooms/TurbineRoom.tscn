@@ -35,9 +35,9 @@ position = Vector2( 0, 0 )
 shape = SubResource( 3 )
 
 [node name="RichTextLabel" parent="." index="3"]
-margin_left = -285.326
-margin_top = -227.051
-margin_right = -108.326
-margin_bottom = -115.051
+margin_left = -147.326
+margin_top = -223.051
+margin_right = 29.674
+margin_bottom = -111.051
 text = "Turbine
 "
