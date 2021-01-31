@@ -12,12 +12,17 @@ export(float) var rods_up_power_output = 100.0
 
 export(float) var waste_creation_speed = 0.02
 
+export(Color) var colour_cold
+export(Color) var colour_hot
+
 var rods_down: bool = false
 # 0 = up, 1 = down
 var rods_down_percentage: float = 0.0
 
 var rod_move_speed := 1.0
 var rods_down_y = 120
+
+var temperature: float = 0.0
 
 func _ready():
 	if rods_down:
@@ -27,6 +32,16 @@ func _ready():
 	else:
 		button_up.disabled = true
 		button_down.disabled = false
+
+
+func _process(delta):
+	._process(delta)
+	var colour
+	if temperature > 0.5:
+		colour = lerp(Color.white, colour_hot, clamp((temperature - 0.5) * 2.0, 0.0, 1.0))
+	else:
+		colour = lerp(colour_cold, Color.white, clamp(temperature * 2.0, 0.0, 1.0))
+	material.set_shader_param("col_mul", colour)
 
 
 func _on_ButtonUp_pressed():

@@ -16,7 +16,7 @@ type = 3
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 1 )
-position = Vector2( -5.82709, -3.17838 )
+position = Vector2( -7.60889, -8.52378 )
 
 [node name="RichTextLabel" parent="." index="3"]
 text = "Waste
@@ -27,6 +27,7 @@ margin_left = -118.0
 margin_top = 133.5
 margin_right = 118.0
 margin_bottom = 147.5
+mouse_filter = 2
 max_value = 1.0
 __meta__ = {
 "_edit_use_anchors_": false

@@ -17,6 +17,8 @@ onready var turbine_room: TurbineRoom = $Rooms/TurbineRoom
 onready var timer: Timer = $Timer
 onready var sound_player = $Audio
 
+const temperature_curve: Curve = preload("res://Curves/temperature_curve.tres")
+
 var levels = []
 var current_level_index := 0
 
@@ -83,6 +85,9 @@ func _process(delta):
 	hud.power = power_output * 0.5
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
+
+	temperature_curve.interpolate(reactor_room.temperature)
+	reactor_room.temperature = power_output
 
 	var added_waste = power_output * reactor_room.waste_creation_speed
 	waste_room.add_waste(added_waste)
