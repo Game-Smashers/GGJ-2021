@@ -178,7 +178,10 @@ func on_human_mouse_exit(human):
 func overlapping_room(body: KinematicBody2D) -> Room:
 	for room in rooms:
 		room = room as Room
-		if room.overlaps_body(body):
+		var rect: RectangleShape2D = room.collision_shape.shape
+		var p1 = body.transform.origin.x > (room.transform.origin.x - rect.extents.x) and body.transform.origin.x < (room.transform.origin.x + rect.extents.x)
+		var p2 = body.transform.origin.y > (room.transform.origin.y - rect.extents.y) and body.transform.origin.y < (room.transform.origin.y + rect.extents.y)
+		if p1 and p2:
 			return room
 	return null
 
