@@ -19,6 +19,12 @@ onready var sound_player = $Audio
 
 onready var fullscreen_tex: TextureRect = $CanvasLayer/TextureRect
 
+onready var humans_container = $Humans
+
+onready var human_spawn_spot_containers = $HumanSpawners
+
+onready var human_prefab = preload("res://Prefabs/Human.tscn")
+
 onready var button_sound = preload("res://Audio/SFX/ButtonPress.wav")
 const temperature_curve: Curve = preload("res://Curves/temperature_curve.tres")
 
@@ -27,6 +33,8 @@ var current_level_index := 0
 
 var humans = []
 var rooms = []
+
+var human_spawn_spots = []
 
 var selected_human: Human = null
 var selected_room: Room = null
@@ -51,8 +59,16 @@ func _ready():
 		room.connect("mouse_entered", self, "on_room_mouse_enter", [room.type])
 		room.connect("mouse_exited", self, "on_room_mouse_exit", [room.type])
 
-	for human in $Humans.get_children():
-		humans.append(human)
+	for child in human_spawn_spot_containers.get_children():
+		human_spawn_spots.append(child)
+
+	for i in range(levels[current_level_index].employees):
+		var new_human = human_prefab.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
+		humans.append(new_human)
+		humans_container.add_child(new_human)
+		new_human.transform.origin = human_spawn_spots[i % human_spawn_spots.size()].transform.origin
+
+	for human in humans:
 		human.connect("mouse_entered", self, "on_human_mouse_enter", [human])
 		human.connect("mouse_exited", self, "on_human_mouse_exit", [human])
 		human_starting_positions.append(human.transform.origin)
@@ -70,6 +86,7 @@ func start_level(level_index: int):
 
 	for i in range(humans.size()):
 		humans[i].transform.origin = human_starting_positions[i]
+		humans[i].energy_drain_speed = levels[current_level_index].human_energy_drain_multiplier
 		humans[i].on_restart(cafeteria)
 
 	selected_human = null
@@ -83,6 +100,12 @@ func start_level(level_index: int):
 	in_red = false
 	seconds_in_red = 0.0
 	fullscreen_tex.material.set_shader_param("col_mul", Color.transparent)
+
+	turbine_room.efficiency_drain_multiplier = levels[current_level_index].turbine_room_efficiency_drain_multiplier
+	turbine_room.disable_breakdown = levels[current_level_index].disable_turbine_breakdown
+	pump_room.disable_breakdown = levels[current_level_index].disable_water_pump_breakdown
+
+	get_tree().paused = false
 
 
 func _process(delta):
@@ -131,13 +154,15 @@ func _process(delta):
 
 			for human in humans:
 				human.on_level_end()
+
+			get_tree().paused = true
 	else:
 		seconds_in_red = 0.0
 
 	reactor_room.temperature = temperature_curve.interpolate(power_output)
 
 	var added_waste = power_output * reactor_room.waste_creation_speed
-	waste_room.add_waste(added_waste)
+	waste_room.add_waste(added_waste * levels[current_level_index].waste_room_fill_speed_multiplier)
 
 
 func _unhandled_input(event):
