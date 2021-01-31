@@ -9,7 +9,7 @@ onready var dazed_audio = $DazedSound
 onready var timer: Timer = $Timer
 
 const GRAVITY: = 75
-const DAZE_DURATION: = 2
+const DAZE_DURATION: = 1.4
 
 var velocity: = Vector2.ZERO
 var held := false
