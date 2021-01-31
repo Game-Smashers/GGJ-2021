@@ -115,6 +115,11 @@ func _process(delta):
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
 
+	if selected_human:
+		hud.show_status_panel(selected_human.human_name, 0.8)
+	elif selected_room:
+		hud.show_status_panel(selected_room.room_name, 1)
+
 	in_red = (power_output <= 0.1 or power_output >= 0.9)
 	if in_red:
 		seconds_in_red += delta
@@ -153,6 +158,7 @@ func _unhandled_input(event):
 					if room.type == rooms[hovered_room_index].type:
 						room.selected = true
 						selected_room = room
+						selected_human = null
 					else:
 						room.selected = false
 		else: # Mouse released
