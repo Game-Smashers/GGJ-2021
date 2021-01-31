@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=2]
@@ -7,9 +7,8 @@
 [ext_resource path="res://Sprites/arrow.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/arrow-active.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/arrow-disabled.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/black-square.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/white-square.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Erik/Reactor1.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Erik/Reactor1.png" type="Texture" id=8]
+[ext_resource path="res://UIElements/ProgressBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sprites/Erik/Reactor2.png" type="Texture" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -22,7 +21,7 @@ extents = Vector2( 335.607, 257.453 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -53,7 +52,6 @@ material = SubResource( 1 )
 position = Vector2( 0.53, 0 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="Ground" type="RigidBody2D" parent="."]
@@ -106,31 +104,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="MarginContainer" parent="."]
-margin_left = -317.655
-margin_top = -153.368
-margin_right = -230.655
-margin_bottom = -16.368
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ReactorRodsBG" type="TextureRect" parent="Container"]
-margin_right = 87.0
-margin_bottom = 137.0
-texture = ExtResource( 9 )
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ReactorRods" type="TextureRect" parent="Container"]
-margin_right = 87.0
-margin_bottom = 137.0
-texture = ExtResource( 8 )
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TextureProgress" parent="." instance=ExtResource( 10 )]
+margin_left = -312.661
+margin_top = -95.2379
+margin_right = -240.661
+margin_bottom = 22.7621
+fill_mode = 3
 [connection signal="pressed" from="ButtonUp" to="." method="_on_ButtonUp_pressed"]
 [connection signal="pressed" from="ButtonDown" to="." method="_on_ButtonDown_pressed"]
