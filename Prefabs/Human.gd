@@ -20,8 +20,8 @@ var energy_level := 1.0
 var room_skilled_in
 var room_unskilled_in
 
-const energy_drain_speed = 0.1
-const energy_regain_speed = 0.2
+export(float) var energy_drain_speed = 0.1
+export(float) var energy_regain_speed = 0.2
 
 var names_list = ["Alex", "Taylor", "Addison", "Jordan", "Parker", "Logan", "Drew", "Adrian", "Flynn", "Quinn"]
 var human_name: String
@@ -137,7 +137,8 @@ func on_restart(starting_room):
 	energy_level = 1.0
 	in_room = starting_room
 	last_room = starting_room
-	dazed_audio.stop()
+	if dazed_audio:
+		dazed_audio.stop()
 
 
 func on_level_end():
