@@ -1,14 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UIElements/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://UIElements/EndScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UIElements/Resources/AlarmStylebox.tres" type="StyleBox" id=4]
 [ext_resource path="res://UIElements/PowerBar.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
 use_filter = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "alarmFlash"
+length = 1.95
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("AlarmPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.65, 1, 1.3, 1.65, 1.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -84,6 +103,12 @@ margin_bottom = 94.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+critical_low = 0.1
+danger_low = 0.2
+safe = 0.4
+danger_high = 0.2
+critical_high = 0.1
+value = 0.5
 
 [node name="Control2" type="Control" parent="HBox/VBoxContainer2"]
 margin_top = 98.0
@@ -127,3 +152,15 @@ text = "01:00"
 
 [node name="EndScreen" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="AlarmPanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AlarmAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/alarmFlash = SubResource( 2 )
