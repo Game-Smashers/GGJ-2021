@@ -1,9 +1,9 @@
 class_name Types
 
 enum RoomType {
-	PUMP,
+	WATER_PUMP,
 	TURBINE,
 	REACTOR,
-	WASTE,
+	WASTE_CLOSET,
 	CAFETERIA
 }

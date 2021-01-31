@@ -15,6 +15,9 @@ var hovered := false
 var selected := false
 var in_room: Room
 
+var names_list = ["Alex", "Taylor", "Addison", "Jordan", "Parker", "Logan", "Drew", "Adrian", "Flynn", "Quinn"]
+var human_name: String
+
 var grab_offset: Vector2
 
 var sprite_material: Material
@@ -25,6 +28,11 @@ func _ready():
 	sprite.set_material(sprite_material)
 	sprite.animation = "work%d" % sprite_variant
 	sprite.playing = true
+
+	randomize()
+
+	human_name = names_list[randi() % names_list.size()]
+	print(human_name)
 
 
 func _physics_process(delta):

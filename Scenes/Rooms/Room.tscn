@@ -5,10 +5,10 @@
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=4]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 shader_param/darkness = 1.0
+shader_param/col_mul = Plane( 1, 1, 1, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 325.675, 165.011 )
