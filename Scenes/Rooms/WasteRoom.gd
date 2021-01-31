@@ -2,7 +2,6 @@ extends Room
 
 class_name WasteRoom
 
-onready var waste_container: Node2D = $Waste
 onready var progress_bar: ProgressBar = $ProgressBar
 
 export(float) var waste_capacity = 10.0
