@@ -65,6 +65,8 @@ func _ready():
 
 
 func start_level(level_index: int):
+	randomize()
+
 	current_level_index = level_index
 	var level: Level = levels[level_index]
 
@@ -75,7 +77,6 @@ func start_level(level_index: int):
 		human.get_parent().remove_child(human)
 
 	humans.clear()
-	print(humans_container.get_child_count())
 
 	for i in range(levels[current_level_index].employees):
 		var new_human = human_prefab.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
@@ -99,10 +100,15 @@ func start_level(level_index: int):
 
 	timer.start(level.time_limit)
 
+	randomize()
+	var SpriteVariant = (randi()%5) +1
+	
 	for i in range(humans.size()):
 		humans[i].transform.origin = human_spawn_spots[i % human_spawn_spots.size()].transform.origin
 		humans[i].energy_drain_speed = levels[current_level_index].human_energy_drain_multiplier
+		humans[i].sprite_variant = ((SpriteVariant + i) % 5) +1
 		humans[i].on_restart(cafeteria)
+		
 		#var spawn_spot_index = i % human_spawn_spots.size()
 		#new_human.transform.origin = human_spawn_spots[spawn_spot_index].transform.origin
 		#print(String(new_human.transform.origin) + " " + String(spawn_spot_index))
@@ -279,7 +285,6 @@ func _on_replay_level_button_pressed() -> void:
 func _on_next_level_button_pressed() -> void:
 	play_sound(button_sound)
 	var new_level_index = clamp(current_level_index + 1, 0, levels.size() - 1)
-	print(new_level_index)
 	start_level(new_level_index)
 
 

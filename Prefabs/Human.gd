@@ -139,6 +139,7 @@ func on_restart(starting_room):
 	last_room = starting_room
 	if dazed_audio:
 		dazed_audio.stop()
+	sprite.animation = "work%d" % sprite_variant
 
 
 func on_level_end():

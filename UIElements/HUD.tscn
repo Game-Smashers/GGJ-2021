@@ -106,12 +106,6 @@ margin_bottom = 94.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-critical_low = 0.1
-danger_low = 0.2
-safe = 0.4
-danger_high = 0.2
-critical_high = 0.1
-value = 0.5
 
 [node name="Control2" type="Control" parent="HBox/VBoxContainer2"]
 margin_top = 98.0

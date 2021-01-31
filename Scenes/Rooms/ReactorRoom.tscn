@@ -1,12 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=2]
 [ext_resource path="res://Scenes/Rooms/ReactorRoom.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/arrow-hover.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/arrow.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/arrow-active.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/arrow-disabled.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/ArrowOkHovered.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/ArrowNo.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/ArrowOk.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Erik/Reactor1.png" type="Texture" id=8]
 [ext_resource path="res://UIElements/ProgressBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sprites/Erik/Reactor2.png" type="Texture" id=11]
@@ -52,6 +51,7 @@ material = SubResource( 1 )
 position = Vector2( 0.53, 0 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="Ground" type="RigidBody2D" parent="."]
@@ -81,10 +81,10 @@ margin_top = -115.613
 margin_right = 137.875
 margin_bottom = -79.6134
 rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 6 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
-texture_disabled = ExtResource( 7 )
+texture_disabled = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -96,10 +96,10 @@ margin_right = 202.522
 margin_bottom = 63.3389
 rect_rotation = 180.0
 rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 6 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
-texture_disabled = ExtResource( 7 )
+texture_disabled = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
