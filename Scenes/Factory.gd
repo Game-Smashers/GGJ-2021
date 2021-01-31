@@ -17,6 +17,8 @@ onready var cafeteria: Cafeteria = $Rooms/Cafeteria
 onready var timer: Timer = $Timer
 onready var sound_player = $Audio
 
+onready var fullscreen_tex: TextureRect = $CanvasLayer/TextureRect
+
 const temperature_curve: Curve = preload("res://Curves/temperature_curve.tres")
 
 var levels = []
@@ -30,6 +32,12 @@ var selected_room: Room = null
 var hovered_room_index := -1
 var hovered_human: Human = null
 var human_starting_positions = []
+
+var in_red := false
+var seconds_in_red := 0.0
+var max_seconds_in_red := 5.0
+#var full_screen_red_flash := 0.0
+#var full_screen_flash_speed := 15.0
 
 func _ready():
 	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
@@ -74,8 +82,17 @@ func start_level(level_index: int):
 	for i in range(rooms.size()):
 		rooms[i].on_restart()
 
+	in_red = false
+	seconds_in_red = 0.0
+	fullscreen_tex.material.set_shader_param("col_mul", Color.transparent)
+
 
 func _process(delta):
+	if in_red:
+		fullscreen_tex.material.set_shader_param("col_mul", Color(0.9, 0.1, 0.1, clamp(seconds_in_red / max_seconds_in_red * 0.6, 0.0, 1.0))) #pow(sin(full_screen_red_flash * full_screen_flash_speed) * 0.5 + 0.5, 3.0)))
+	else:
+		fullscreen_tex.material.set_shader_param("col_mul", Color.transparent)
+
 	# Calculate power output
 	if reactor_room.rods_down:
 		if reactor_room.rods_down_percentage != 1.0:
@@ -98,6 +115,15 @@ func _process(delta):
 	hud.power = power_output
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
+
+	in_red = (power_output <= 0.1 or power_output >= 0.9)
+	if in_red:
+		seconds_in_red += delta
+		if seconds_in_red >= max_seconds_in_red:
+			hud.end_screen.end_level(false, 0, 0)
+			timer.stop()
+	else:
+		seconds_in_red = 0.0
 
 	reactor_room.temperature = temperature_curve.interpolate(power_output)
 
