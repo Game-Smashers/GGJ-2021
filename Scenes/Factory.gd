@@ -90,17 +90,16 @@ func _process(delta):
 
 	reactor_room.set_rod_down_percent(reactor_room.rods_down_percentage)
 
-	var target_power_output = 80.0
-
-	var power_output = lerp(reactor_room.rods_up_power_output, reactor_room.rods_down_power_output, reactor_room.rods_down_percentage) * turbine_room.efficiency
+	var power_output = lerp(reactor_room.rods_up_power_output, reactor_room.rods_down_power_output, reactor_room.rods_down_percentage)
+	power_output *= turbine_room.efficiency
+	# More waste slows down production speed
 	power_output *= 1.0 - clamp(waste_room.waste_amount / waste_room.waste_capacity, 0.0, 0.99)
-	power_output /= target_power_output
-	hud.power = power_output * 0.5
+	print(power_output)
+	hud.power = power_output
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
 
-	temperature_curve.interpolate(reactor_room.temperature)
-	reactor_room.temperature = power_output
+	reactor_room.temperature = temperature_curve.interpolate(power_output)
 
 	var added_waste = power_output * reactor_room.waste_creation_speed
 	waste_room.add_waste(added_waste)

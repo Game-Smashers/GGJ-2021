@@ -35,6 +35,8 @@ func _process(delta):
 		var alpha := pow(sin(full_timer * blink_speed) * 0.4 + 0.5, 3.0)
 		var col_mul = lerp(Color.white, Color(0.8, 0.1, 0.1, 1.0), alpha)
 		material.set_shader_param("col_mul", col_mul)
+	else:
+		material.set_shader_param("col_mul", Color(1, 1, 1, 1))
 
 
 func on_restart():
