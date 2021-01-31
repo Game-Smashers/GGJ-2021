@@ -64,6 +64,15 @@ func start_level(level_index: int):
 
 	for i in range(humans.size()):
 		humans[i].transform.origin = human_starting_positions[i]
+		humans[i].on_restart()
+
+	selected_human = null
+	selected_room = null
+	hovered_room_index = -1
+	hovered_human = null
+
+	for i in range(rooms.size()):
+		rooms[i].on_restart()
 
 
 func _process(delta):
@@ -169,7 +178,10 @@ func on_human_mouse_exit(human):
 func overlapping_room(body: KinematicBody2D) -> Room:
 	for room in rooms:
 		room = room as Room
-		if room.overlaps_body(body):
+		var rect: RectangleShape2D = room.collision_shape.shape
+		var p1 = body.transform.origin.x > (room.transform.origin.x - rect.extents.x) and body.transform.origin.x < (room.transform.origin.x + rect.extents.x)
+		var p2 = body.transform.origin.y > (room.transform.origin.y - rect.extents.y) and body.transform.origin.y < (room.transform.origin.y + rect.extents.y)
+		if p1 and p2:
 			return room
 	return null
 
