@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UIElements/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://UIElements/Resources/AlarmStylebox.tres" type="StyleBox" id=4]
 [ext_resource path="res://UIElements/PowerBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UIElements/Resources/WindowStylebox.stylebox" type="StyleBox" id=6]
+[ext_resource path="res://Sprites/progress-bar-bg.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/progress-bar-fg.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -163,6 +165,8 @@ anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.9
+margin_top = 0.5
+margin_bottom = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -174,15 +178,22 @@ custom_fonts/font = SubResource( 1 )
 text = "Title"
 align = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="StatusPanel/VBoxContainer"]
+[node name="TextureProgress" type="TextureProgress" parent="StatusPanel/VBoxContainer"]
 margin_top = 64.0
 margin_right = 296.0
-margin_bottom = 66.0
-max_value = 1.0
-value = 0.5
-percent_visible = false
+margin_bottom = 136.0
+size_flags_horizontal = 3
+value = 50.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+nine_patch_stretch = true
+stretch_margin_left = 36
+stretch_margin_top = 36
+stretch_margin_right = 36
+stretch_margin_bottom = 36
 
 [node name="EndScreen" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="AlarmPanel" type="Panel" parent="."]
 visible = false

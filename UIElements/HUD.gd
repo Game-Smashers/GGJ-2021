@@ -13,9 +13,9 @@ onready var timer_label: Label = $VBoxContainer3/TimerLabel
 onready var end_screen: EndScreen = $EndScreen
 onready var alarm_panel: Panel = $AlarmPanel
 onready var alarm_animation_player: AnimationPlayer = $AlarmAnimationPlayer
-onready var status_panel: Panel = $StatusPanel
+onready var status_panel: Control = $StatusPanel/VBoxContainer
 onready var status_panel_title_label: Label = $StatusPanel/VBoxContainer/TitleLabel
-onready var status_panel_progress_bar: ProgressBar = $StatusPanel/VBoxContainer/ProgressBar
+onready var status_panel_progress_bar: TextureProgress = $StatusPanel/VBoxContainer/TextureProgress
 
 var flashing_red := false
 var solid_red := false
@@ -72,4 +72,8 @@ func stop_alarm():
 func show_status_panel(title: String, value: float):
 	status_panel_title_label.text = title
 	status_panel_progress_bar.value = value
-	status_panel.get_child(0).show()
+	status_panel.show()
+
+
+func hide_status_panel():
+	status_panel.hide()
