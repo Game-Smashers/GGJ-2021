@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Reactor.png-4a0d234659820892df329b4f848add48.stex"
+path="res://.import/Turbine.png-9d42a4807045c2d0cd0b42f0960c1fbe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Erik/Reactor.png"
-dest_files=[ "res://.import/Reactor.png-4a0d234659820892df329b4f848add48.stex" ]
+source_file="res://Sprites/Erik/Turbine.png"
+dest_files=[ "res://.import/Turbine.png-9d42a4807045c2d0cd0b42f0960c1fbe.stex" ]
 
 [params]
 

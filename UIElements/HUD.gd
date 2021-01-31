@@ -9,7 +9,7 @@ export(int) var seconds: = 0 setget set_seconds
 
 onready var power_bar: PowerBar = $HBox/VBoxContainer2/PowerBar
 onready var level_label: Label = $HBox/LevelVBox/LevelNumberLabel
-onready var timer_label: Label = $HBox/TimerLabel
+onready var timer_label: Label = $VBoxContainer3/TimerLabel
 onready var end_screen: EndScreen = $EndScreen
 
 func set_power(new_power: float) -> void:

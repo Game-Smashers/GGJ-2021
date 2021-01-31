@@ -10,6 +10,7 @@ extents = Vector2( 31.1084, 30.6534 )
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 3 )
 shader_param/darkness = null
+shader_param/col_mul = Plane( 1, 1, 1, 1 )
 
 [node name="Human" type="KinematicBody2D" groups=[
 "grabbable",
