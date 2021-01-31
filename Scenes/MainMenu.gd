@@ -5,6 +5,7 @@ onready var game_scene = preload("res://Scenes/Factory.tscn")
 
 onready var title_screen = $VBoxContainer
 onready var level_select_screen = $LevelSelectScreen
+onready var button_sound = preload("res://Audio/SFX/ButtonPress.wav")
 
 var levels: = []
 
@@ -51,22 +52,41 @@ func _start_game(idx: int) -> void:
 
 
 func _on_StartGameButton_pressed() -> void:
+	play_sound(button_sound)
 	_start_game(0)
 
 
 func _on_level_button_pressed(idx: int) -> void:
+	play_sound(button_sound)
 	_start_game(idx)
 
 
 func _on_QuitButton_pressed() -> void:
+	play_sound(button_sound)
 	get_tree().quit()
 
 
 func _on_LevelSelectButton_pressed() -> void:
+	play_sound(button_sound)
 	title_screen.hide()
 	level_select_screen.show()
 
 
 func _on_back_button_pressed() -> void:
+	play_sound(button_sound)
 	title_screen.show()
 	level_select_screen.hide()
+
+func play_sound_from_file(audio_file):
+	if File.new().file_exists(audio_file):
+		var audio_stream = load(audio_file) 
+		play_sound(audio_stream)
+
+func play_sound(audio_stream):
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = audio_stream
+	player.play()
+	yield(player, "finished")
+	remove_child(player)
+	player.queue_free()
