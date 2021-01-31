@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UIElements/HUD.tscn" type="PackedScene" id=2]
@@ -8,17 +8,26 @@
 [ext_resource path="res://Scenes/Rooms/Cafeteria.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Rooms/ReactorRoom.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Rooms/TurbineRoom.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Sprites/Erik/Factory.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Erik/Factory1.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Factory.gd" type="Script" id=10]
 [ext_resource path="res://Audio/SFX/FactoryBackground.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scripts/Geiger.gd" type="Script" id=12]
 [ext_resource path="res://Audio/SFX/GeigerCounter.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sprites/white-square.png" type="Texture" id=14]
 [ext_resource path="res://Shaders/full_screen.shader" type="Shader" id=15]
+[ext_resource path="res://Sprites/Erik/Factory2.png" type="Texture" id=16]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 15 )
 shader_param/col_mul = Plane( 0.9, 0.1, 0.1, 0 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 10 )
@@ -82,11 +91,13 @@ script = ExtResource( 12 )
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="FactoryBackground" type="Sprite" parent="."]
+[node name="FactoryBackground" type="AnimatedSprite" parent="."]
 position = Vector2( 960, 540 )
 scale = Vector2( 4, 4 )
 z_index = -1
-texture = ExtResource( 9 )
+frames = SubResource( 2 )
+frame = 1
+playing = true
 __meta__ = {
 "_edit_lock_": true
 }
