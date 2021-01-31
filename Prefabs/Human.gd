@@ -1,10 +1,13 @@
 class_name Human
-
 extends KinematicBody2D
 
+export(int, 1, 5) var sprite_variant: = 1
+
 onready var collision_shape = $CollisionShape2D
+onready var sprite: AnimatedSprite = $Sprite
 
 const GRAVITY: = 75
+const DAZE_DURATION: = 2
 
 var velocity: = Vector2.ZERO
 var held := false
@@ -18,8 +21,9 @@ var sprite_material: Material
 
 func _ready():
 	input_pickable = true
-	sprite_material = $Sprite.material.duplicate()
-	$Sprite.set_material(sprite_material)
+	sprite_material = sprite.material.duplicate()
+	sprite.set_material(sprite_material)
+	sprite.animation = "work%d" % sprite_variant
 
 
 func _physics_process(delta):
@@ -55,6 +59,7 @@ func pickup(grab_offset):
 		return
 	held = true
 	self.grab_offset = grab_offset
+	sprite.animation = "hang%d" % sprite_variant
 
 	if in_room != null:
 		in_room.remove_occupant()
@@ -65,6 +70,12 @@ func drop(room):
 	if held:
 		held = false
 	in_room = room
+	sprite.animation = "dizzy%d" % sprite_variant
+	get_tree().create_timer(DAZE_DURATION).connect("timeout", self, "_on_daze_finished")
 
 	if room != null:
 		room.add_occupant()
+
+
+func _on_daze_finished() -> void:
+	sprite.animation = "work%d" % sprite_variant

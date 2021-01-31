@@ -49,6 +49,7 @@ position = Vector2( 111.556, 528.465 )
 
 [node name="Human1" parent="Humans" instance=ExtResource( 1 )]
 position = Vector2( 210.389, 535.214 )
+sprite_variant = 5
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
