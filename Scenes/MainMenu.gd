@@ -45,8 +45,8 @@ func _start_game(idx: int) -> void:
 	game_scene_instance.levels = levels
 	game_scene_instance.current_level_index = idx
 
-	get_tree().current_scene = game_scene_instance
 	get_tree().root.add_child(game_scene_instance)
+	get_tree().current_scene = game_scene_instance
 	queue_free()
 
 
