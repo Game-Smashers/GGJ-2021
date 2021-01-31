@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UIElements/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://UIElements/EndScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UIElements/Resources/AlarmStylebox.tres" type="StyleBox" id=4]
 [ext_resource path="res://UIElements/PowerBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UIElements/Resources/WindowStylebox.stylebox" type="StyleBox" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -165,3 +166,40 @@ __meta__ = {
 
 [node name="AlarmAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/alarmFlash = SubResource( 2 )
+
+[node name="StatusPanel" type="Panel" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 36.0
+margin_top = -521.0
+margin_right = 406.0
+margin_bottom = -36.0
+custom_styles/panel = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatusPanel"]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="StatusPanel/VBoxContainer"]
+margin_right = 296.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 1 )
+text = "Title"
+align = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="StatusPanel/VBoxContainer"]
+margin_top = 64.0
+margin_right = 296.0
+margin_bottom = 78.0
+max_value = 1.0
+value = 0.5
+percent_visible = false
