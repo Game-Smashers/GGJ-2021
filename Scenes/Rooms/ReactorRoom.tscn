@@ -80,10 +80,10 @@ __meta__ = {
 }
 
 [node name="Container" type="MarginContainer" parent="." index="6"]
-margin_left = -110.0
-margin_top = -95.0
-margin_right = -23.0
-margin_bottom = 42.0
+margin_left = -317.655
+margin_top = -153.368
+margin_right = -230.655
+margin_bottom = -16.368
 __meta__ = {
 "_edit_use_anchors_": false
 }
