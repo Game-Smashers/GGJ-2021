@@ -110,7 +110,7 @@ func _process(delta):
 	power_output *= turbine_room.efficiency
 	# More waste slows down production speed
 	power_output *= 1.0 - clamp(waste_room.waste_amount / waste_room.waste_capacity, 0.0, 0.99)
-	print(power_output)
+	#print(power_output)
 	hud.power = power_output
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
