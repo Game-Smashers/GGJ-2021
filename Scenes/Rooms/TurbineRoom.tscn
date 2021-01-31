@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Rooms/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=2]
@@ -15,6 +15,8 @@ extents = Vector2( 328.728, 171.854 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 327.839, 5.07147 )
+
+[sub_resource type="DynamicFont" id=4]
 
 [node name="Room" instance=ExtResource( 1 )]
 material = SubResource( 1 )
@@ -41,3 +43,18 @@ margin_right = 18.752
 margin_bottom = -107.814
 text = "Turbine
 "
+
+[node name="EfficiencyProgressBar" type="ProgressBar" parent="." index="4"]
+margin_left = -311.0
+margin_top = 123.0
+margin_right = -40.0
+margin_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 4 )
+max_value = 1.0
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
