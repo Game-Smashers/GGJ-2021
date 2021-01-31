@@ -30,15 +30,15 @@ func _physics_process(delta):
 	if held:
 		global_transform.origin = get_global_mouse_position() + grab_offset
 		if grab_offset.x > 0:
-			global_transform.x = Vector2(0.9,0.1).normalized()
-			global_transform.y = Vector2(-0.1,0.9).normalized()
+			global_transform.x = Vector2(3.6, 0.4)
+			global_transform.y = Vector2(-0.4, 3.6)
 		else:
-			global_transform.x = Vector2(-0.9,0.1).normalized()
-			global_transform.y = Vector2(0.1,0.9).normalized()
+			global_transform.x = Vector2(-3.6, 0.4)
+			global_transform.y = Vector2(0.4, 3.6)
 		return
 
-	global_transform.x = Vector2(1.0, 0.0)
-	global_transform.y = Vector2(0.0, 1.0)
+	global_transform.x = Vector2(4.0, 0.0)
+	global_transform.y = Vector2(0.0, 4.0)
 
 	velocity.y += GRAVITY * delta
 	if move_and_collide(velocity):
