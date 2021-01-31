@@ -19,6 +19,7 @@ onready var sound_player = $Audio
 
 onready var fullscreen_tex: TextureRect = $CanvasLayer/TextureRect
 
+onready var button_sound = preload("res://Audio/SFX/ButtonPress.wav")
 const temperature_curve: Curve = preload("res://Curves/temperature_curve.tres")
 
 var levels = []
@@ -36,8 +37,7 @@ var human_starting_positions = []
 var in_red := false
 var seconds_in_red := 0.0
 var max_seconds_in_red := 5.0
-#var full_screen_red_flash := 0.0
-#var full_screen_flash_speed := 15.0
+
 
 func _ready():
 	hud.end_screen.replay_level_button.connect("pressed", self, "_on_replay_level_button_pressed")
@@ -111,7 +111,7 @@ func _process(delta):
 	power_output *= turbine_room.efficiency
 	# More waste slows down production speed
 	power_output *= 1.0 - clamp(waste_room.waste_amount / waste_room.waste_capacity, 0.0, 0.99)
-	print(power_output)
+	#print(power_output)
 	hud.power = power_output
 	hud.minutes = int(timer.time_left / 60)
 	hud.seconds = int(timer.time_left) % 60
@@ -216,12 +216,30 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_replay_level_button_pressed() -> void:
+	play_sound(button_sound)
 	start_level(current_level_index)
 
 
 func _on_next_level_button_pressed() -> void:
+	play_sound(button_sound)
 	start_level(current_level_index + 1)
 
 
 func _on_back_to_menu_button_pressed() -> void:
+	play_sound(button_sound)
+	yield(get_tree().create_timer(0.5), "timeout")
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+
+func play_sound_from_file(audio_file):
+	if File.new().file_exists(audio_file):
+		var audio_stream = load(audio_file) 
+		play_sound(audio_stream)
+
+func play_sound(audio_stream):
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = audio_stream
+	player.play()
+	yield(player, "finished")
+	remove_child(player)
+	player.queue_free()
