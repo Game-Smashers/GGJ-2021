@@ -7,8 +7,8 @@ onready var button_down: TextureButton = $ButtonDown
 
 onready var reactor_rods: TextureRect = $Container/ReactorRods
 
-export(float) var rods_down_power_output = 0.2
-export(float) var rods_up_power_output = 1.0
+export(float) var rods_down_power_output = 0.4
+export(float) var rods_up_power_output = 0.8
 
 export(float) var waste_creation_speed = 0.02
 
