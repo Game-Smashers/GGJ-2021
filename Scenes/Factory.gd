@@ -115,9 +115,10 @@ func _process(delta):
 	hud.seconds = int(timer.time_left) % 60
 
 	if selected_human:
-		hud.show_status_panel(selected_human.human_name, selected_human.energy_level * 100)
+		hud.show_status_panel(selected_human.human_name, selected_human.energy_level)
 	elif selected_room:
-		hud.show_status_panel(selected_room.room_name, 1)
+		var room_condition: = 1.0
+		hud.show_status_panel(selected_room.room_name, -1)
 	else:
 		hud.hide_status_panel()
 

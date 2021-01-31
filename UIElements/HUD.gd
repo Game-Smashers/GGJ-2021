@@ -71,7 +71,11 @@ func stop_alarm():
 
 func show_status_panel(title: String, value: float):
 	status_panel_title_label.text = title
-	status_panel_progress_bar.value = value
+	if value < 0:
+		status_panel_progress_bar.hide()
+	else:
+		status_panel_progress_bar.value = value
+		status_panel_progress_bar.show()
 	status_panel.show()
 
 
