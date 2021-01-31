@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Shaders/Room.shader" type="Shader" id=1]
-[ext_resource path="res://Scenes/Rooms/Room.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Erik/Canteen1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Rooms/Cafeteria.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/Erik/Canteen.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Erik/Canteen2.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/Animated.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -13,30 +14,56 @@ shader_param/col_mul = Plane( 1, 1, 1, 1 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 416.649, 137.254 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 418.213, 5.07147 )
 
-[node name="Room" instance=ExtResource( 2 )]
+[sub_resource type="DynamicFont" id=5]
+size = 52
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="Room" type="Area2D" groups=[
+"rooms",
+]]
 material = SubResource( 1 )
 script = ExtResource( 3 )
 type = 4
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
+position = Vector2( 0.529696, -2.11892 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 4 )
+frames = SubResource( 3 )
+playing = true
 
-[node name="GroundCollider" parent="Ground" index="0"]
+[node name="Ground" type="RigidBody2D" parent="."]
+position = Vector2( 0, 163.318 )
+mode = 1
+
+[node name="GroundCollider" type="CollisionShape2D" parent="Ground"]
 position = Vector2( -3.9248, -40.1498 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
-[node name="RichTextLabel" parent="." index="3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = -408.987
 margin_top = -228.221
 margin_right = -193.987
 margin_bottom = -114.221
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 5 )
 text = "Cafeteria
 "
+__meta__ = {
+"_edit_use_anchors_": false
+}
