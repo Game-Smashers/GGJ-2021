@@ -145,22 +145,6 @@ custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "01:00"
 
-[node name="EndScreen" parent="." instance=ExtResource( 3 )]
-visible = false
-
-[node name="AlarmPanel" type="Panel" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-custom_styles/panel = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AlarmAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/alarmFlash = SubResource( 2 )
-
 [node name="StatusPanel" type="Panel" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -197,3 +181,18 @@ margin_bottom = 66.0
 max_value = 1.0
 value = 0.5
 percent_visible = false
+
+[node name="EndScreen" parent="." instance=ExtResource( 3 )]
+
+[node name="AlarmPanel" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AlarmAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/alarmFlash = SubResource( 2 )
