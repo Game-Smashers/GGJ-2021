@@ -5,6 +5,7 @@ export(int, 1, 5) var sprite_variant: = 1
 
 onready var collision_shape = $CollisionShape2D
 onready var sprite: AnimatedSprite = $Sprite
+onready var dazed_audio = $DazedSound
 
 const GRAVITY: = 75
 const DAZE_DURATION: = 2
@@ -86,6 +87,7 @@ func drop(room):
 		held = false
 	in_room = room
 	sprite.animation = "dizzy%d" % sprite_variant
+	dazed_audio.play()
 	get_tree().create_timer(DAZE_DURATION).connect("timeout", self, "_on_daze_finished")
 
 	if room != null:
@@ -93,6 +95,7 @@ func drop(room):
 
 
 func _on_daze_finished() -> void:
+	dazed_audio.stop()
 	sprite.animation = "work%d" % sprite_variant
 
 
