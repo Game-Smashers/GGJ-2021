@@ -80,7 +80,7 @@ func start_level(level_index: int):
 	humans.clear()
 
 	for i in range(levels[current_level_index].employees):
-		var new_human = human_prefab.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
+		var new_human = human_prefab.instance()
 		humans.append(new_human)
 		humans_container.add_child(new_human)
 
