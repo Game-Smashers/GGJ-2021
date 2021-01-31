@@ -35,10 +35,10 @@ position = Vector2( 0, -19.367 )
 shape = SubResource( 3 )
 
 [node name="RichTextLabel" parent="." index="3"]
-margin_left = -284.674
-margin_top = -215.144
-margin_right = -107.674
-margin_bottom = -103.144
+margin_left = -431.045
+margin_top = -147.969
+margin_right = -254.045
+margin_bottom = -35.9687
 text = "Waste
 "
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Prefabs/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UIElements/HUD.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Rooms/Cafeteria.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Rooms/ReactorRoom.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Rooms/TurbineRoom.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/Erik/Factory.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Factory.gd" type="Script" id=10]
 [ext_resource path="res://Audio/SFX/FactoryBackground.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scripts/Geiger.gd" type="Script" id=12]
@@ -27,19 +28,19 @@ margin_bottom = 1080.0
 [node name="Rooms" type="Node" parent="."]
 
 [node name="WaterPumpRoom" parent="Rooms" instance=ExtResource( 5 )]
-position = Vector2( 944.765, 494.857 )
+position = Vector2( 948.144, 511.873 )
 
 [node name="Cafeteria" parent="Rooms" instance=ExtResource( 6 )]
-position = Vector2( 548.37, 899.845 )
+position = Vector2( 653.387, 900.074 )
 
 [node name="WasteRoom" parent="Rooms" instance=ExtResource( 4 )]
-position = Vector2( 1547.8, 884.106 )
+position = Vector2( 1569.98, 901.976 )
 
 [node name="ReactorRoom" parent="Rooms" instance=ExtResource( 7 )]
-position = Vector2( 1545.56, 410.681 )
+position = Vector2( 1562.04, 428.099 )
 
 [node name="TurbineRoom" parent="Rooms" instance=ExtResource( 8 )]
-position = Vector2( 366.899, 491.5 )
+position = Vector2( 347.92, 506.036 )
 
 [node name="Humans" type="Node" parent="."]
 
@@ -62,5 +63,14 @@ script = ExtResource( 12 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="FactoryBackground" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+scale = Vector2( 4, 4 )
+z_index = -1
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="finished" from="Audio/Geiger" to="Audio/Geiger" method="_on_Geiger_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
