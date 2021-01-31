@@ -36,7 +36,8 @@ __meta__ = {
 }
 
 [node name="CriticalZoneLow" type="ColorRect" parent="VBox/HBox"]
-margin_right = 192.0
+visible = false
+margin_right = 1920.0
 margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
@@ -46,16 +47,18 @@ __meta__ = {
 }
 
 [node name="DangerZoneLow" type="ColorRect" parent="VBox/HBox"]
-margin_left = 192.0
-margin_right = 576.0
+visible = false
+margin_left = 640.0
+margin_right = 1920.0
 margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 color = Color( 0.870588, 0.615686, 0.129412, 1 )
 
 [node name="SafeZone" type="ColorRect" parent="VBox/HBox"]
-margin_left = 576.0
-margin_right = 1344.0
+visible = false
+margin_left = 822.0
+margin_right = 1920.0
 margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
@@ -65,14 +68,16 @@ __meta__ = {
 }
 
 [node name="DangerZoneHigh" type="ColorRect" parent="VBox/HBox"]
-margin_left = 1344.0
-margin_right = 1728.0
+visible = false
+margin_left = 1493.0
+margin_right = 1920.0
 margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 color = Color( 0.870588, 0.615686, 0.129412, 1 )
 
 [node name="CriticalZoneHigh" type="ColorRect" parent="VBox/HBox"]
+visible = false
 margin_left = 1728.0
 margin_right = 1920.0
 margin_bottom = 670.0
@@ -97,3 +102,6 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0, 0.462745, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
