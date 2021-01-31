@@ -18,6 +18,10 @@ onready var danger_high_panel: ColorRect = $VBox/HBox/DangerZoneHigh
 onready var critical_high_panel: ColorRect = $VBox/HBox/CriticalZoneHigh
 onready var value_rect: ColorRect = $ValueRect
 
+func set_value(new_value: float):
+	value = new_value
+	_ready()
+
 func _ready() -> void:
 	critical_low_panel.size_flags_stretch_ratio = critical_low
 	danger_low_panel.size_flags_stretch_ratio = danger_low

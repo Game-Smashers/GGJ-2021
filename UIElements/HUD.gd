@@ -23,7 +23,7 @@ var accum_time := 0.0
 var flash_speed = 12.0
 
 func set_power(new_power: float) -> void:
-	power_bar.value = new_power
+	power_bar.set_value(new_power)
 	power = new_power
 
 
