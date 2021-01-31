@@ -140,3 +140,6 @@ func on_restart(starting_room):
 	dazed_audio.stop()
 
 
+func on_level_end():
+	dazed_audio.stop()
+

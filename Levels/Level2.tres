@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 time_limit = 60
 power = 0.5
-waste = 0.0
+waste = 0.5
 reactor = 0.5
 health_restore_rate = 1.0
-employees = 0
+employees = 2

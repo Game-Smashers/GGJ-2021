@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
-time_limit = 60
+time_limit = 30
 power = 0.5
 waste = 0.0
-reactor = 0.5
-health_restore_rate = 1.0
-employees = 0
+reactor = 1.0
+health_restore_rate = 2.0
+employees = 1
