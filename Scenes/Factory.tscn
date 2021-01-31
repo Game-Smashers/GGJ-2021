@@ -28,27 +28,27 @@ margin_bottom = 1080.0
 [node name="Rooms" type="Node" parent="."]
 
 [node name="WaterPumpRoom" parent="Rooms" instance=ExtResource( 5 )]
-position = Vector2( 948.144, 511.873 )
+position = Vector2( 948, 509 )
 
 [node name="Cafeteria" parent="Rooms" instance=ExtResource( 6 )]
-position = Vector2( 653.387, 900.074 )
+position = Vector2( 653, 900 )
 
 [node name="WasteRoom" parent="Rooms" instance=ExtResource( 4 )]
-position = Vector2( 1569.98, 901.976 )
+position = Vector2( 1569, 900 )
 
 [node name="ReactorRoom" parent="Rooms" instance=ExtResource( 7 )]
-position = Vector2( 1562.04, 428.099 )
+position = Vector2( 1562, 428 )
 
 [node name="TurbineRoom" parent="Rooms" instance=ExtResource( 8 )]
-position = Vector2( 347.92, 506.036 )
+position = Vector2( 347, 506 )
 
 [node name="Humans" type="Node" parent="."]
 
 [node name="Human0" parent="Humans" instance=ExtResource( 1 )]
-position = Vector2( 111.556, 528.465 )
+position = Vector2( 570.643, 906.735 )
 
 [node name="Human1" parent="Humans" instance=ExtResource( 1 )]
-position = Vector2( 210.389, 535.214 )
+position = Vector2( 669.476, 913.484 )
 sprite_variant = 5
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
